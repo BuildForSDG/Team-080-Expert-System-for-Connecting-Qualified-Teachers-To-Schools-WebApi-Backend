@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class level extends Model
+class Level extends Model
 {
      /**
      * The attributes that are mass assignable.
@@ -15,4 +15,8 @@ class level extends Model
         'name',
         'level_group',
     ];
+
+    public function subject(){
+        return $this->hasOne(Subject::class, 'level_id','id');
+    }
 }

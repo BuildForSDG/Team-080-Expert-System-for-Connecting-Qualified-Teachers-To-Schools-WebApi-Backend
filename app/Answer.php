@@ -18,4 +18,8 @@ class Answer extends Model
         'is_active',
         'is_correct',
 ];
+
+public function question(){
+    return $this->belongsTo(Question::class, 'question_id','id');
+}
 }

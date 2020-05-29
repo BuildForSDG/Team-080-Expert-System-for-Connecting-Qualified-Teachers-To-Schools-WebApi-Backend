@@ -20,6 +20,8 @@ class CreateQualificationsTable extends Migration
             $table->bigInteger('degree_id');
             $table->string('name');
             $table->date('start_date');
+            $table->date('end_date');
+            $table->string('cert_image');
             $table->timestamps();
         });
     }

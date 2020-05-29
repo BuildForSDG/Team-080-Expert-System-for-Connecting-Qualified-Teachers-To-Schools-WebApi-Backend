@@ -15,4 +15,17 @@ class State extends Model
         'country_id',
         'name',
     ];
+
+    public function state(){
+        return $this->belongsTo(Country::class, 'country_id','id');
+    }
+
+    public function institution(){
+        return $this->hasMany(Institution::class, 'state_id','id');
+    }
+
+    public function city(){
+        return $this->hasMany(City::class, 'state_id','id');
+    }
+    
 }

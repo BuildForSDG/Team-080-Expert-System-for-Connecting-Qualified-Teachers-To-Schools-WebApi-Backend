@@ -20,6 +20,11 @@ class CreateCountriesTable extends Migration
             $table->string('short_name');
             $table->string('long_name');
             $table->string('numcode');
+            $table->string('un_member');
+            $table->string('calling_code');
+            $table->string('cctld');
+            $table->string('currency_name');
+            $table->string('currency_symbol');
             $table->timestamps();
         });
     }

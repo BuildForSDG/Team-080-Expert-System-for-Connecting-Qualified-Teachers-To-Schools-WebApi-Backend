@@ -16,5 +16,10 @@ class Quize extends Model
         'total_questions',
         'answers',
         'score',
+        'is_active',
     ];
+
+    public function profile(){
+        return $this->belongsTo(Profile::class, 'profile_id','id');
+    }
 }

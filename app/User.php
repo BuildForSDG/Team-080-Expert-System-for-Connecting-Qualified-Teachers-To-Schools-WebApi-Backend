@@ -20,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_type_id',
         'api_token',
         'email',
+        'email_verified_at',
         'password',
         'is_active',
     ];
@@ -41,4 +42,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile(){
+        return $this->hasOne(Profile::class, 'user_id','id');
+    }
+
+    public function usertype(){
+        return $this->belongsTo(UserType::class, 'user_type_id','id');
+    }
 }

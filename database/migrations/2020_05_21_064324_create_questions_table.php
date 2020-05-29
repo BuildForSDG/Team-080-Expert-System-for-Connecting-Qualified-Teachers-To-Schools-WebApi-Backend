@@ -18,8 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->bigInteger('subject_id');
             $table->text('question');
             $table->string('image_name');
-            $table->Integer('is_german');
-            $table->Integer('is_active');
+            $table->tinyInteger('is_german');
+            $table->tinyInteger('is_active');
             $table->timestamps();
         });
     }

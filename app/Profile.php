@@ -21,4 +21,12 @@ class Profile extends Model
         'date_of_birth',
         'city_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id','id');
+    }
+
+    public function quize(){
+        return $this->belongsTo(Quize::class, 'profile_id','id');
+    }
 }

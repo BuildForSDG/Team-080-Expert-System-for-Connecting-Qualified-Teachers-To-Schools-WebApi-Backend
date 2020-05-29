@@ -17,5 +17,7 @@ class Qualification extends Model
         'degree_id',
         'name',
         'start_date',
+        'end_date',
+        'cert_image',
     ];
 }

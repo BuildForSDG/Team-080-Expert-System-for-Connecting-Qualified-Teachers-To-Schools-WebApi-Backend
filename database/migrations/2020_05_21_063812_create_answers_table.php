@@ -18,8 +18,8 @@ class CreateAnswersTable extends Migration
             $table->bigInteger('question_id');
             $table->text('answer');
             $table->string('image_name');
-            $table->Integer('is_active');
-            $table->Integer('is_correct');
+            $table->tinyInteger('is_active');
+            $table->tinyInteger('is_correct');
             $table->timestamps();
         });
     }
