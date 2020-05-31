@@ -65,7 +65,7 @@ use Illuminate\Support\Facades\Route;
       Route::post('degrees', 'DegreeController@update');
       Route::delete('degrees/{id}', 'DegreeController@destory');
 
-       //Degree Routes
+       //Institution Routes
        Route::get('institutions', 'InstitutionController@index');
        Route::get('institutions/{id}', 'InstitutionController@show');
        Route::post('institutions/create', 'InstitutionController@store');
