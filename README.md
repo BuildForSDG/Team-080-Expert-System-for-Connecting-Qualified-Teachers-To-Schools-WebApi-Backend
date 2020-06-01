@@ -2,10 +2,12 @@ TeachersTurf Web Api
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d489d8f35334ef79f76c5369f1f2c87)](https://app.codacy.com/gh/BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-&utm_campaign=Badge_Grade_Settings)
 
-![picture](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/app/public/images/TeacherTurfSignUpPage.png)
-![picture](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/app/public/images/TeacherTurfLoginPage.png)
-![picture](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/app/public/images/TeacherTurfLoadingPage.png)
-![picture](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/app/public/images/TeacherTurfInterviewPage.png)
+
+<img src="storage/app/public/images/TeacherTurfSignUpPage.png" />
+<img src="storage/app/public/images/TeacherTurfLoginPage.png" />
+<img src="storage/app/public/images/TeacherTurfLoadingPage.png" />
+<img src="storage/app/public/images/TeacherTurfInterviewPage.png" />
+
 
 
 ## About
@@ -48,10 +50,6 @@ then run the following command to generate fresh key.
 ##### Run Migration
 then run the following command to create migrations in the databbase.
 ###### `php artisan migrate`
-
-##### Database Seeding
-finally run the following command to seed the database with dummy content.
-###### `php artisan db:seed`
 
 ### API EndPoints
 ##### User
@@ -152,36 +150,33 @@ finally run the following command to seed the database with dummy content.
 
 
 * @boyeoffice
-* Olakunle Boye
-* https://github.com/boyeoffice
+ Olakunle Boye
+ https://github.com/boyeoffice
 
 * https://github.com/rebirthtobi
 
-* @rebirthtobi
-* Tobi Taiwo
+ @rebirthtobi
+ Tobi Taiwo
 
 * https://github.com/richardiyama
 
-* @richardiyama
-* Richard Iyama Oluwaseun
+@richardiyama
+ Richard Iyama Oluwaseun
 
 * https://github.com/shinnida220
-* @Emmanuel
+ @Emmanuel
 
 * https://github.com/stteem
-* @stteem
-* Uwem Uke
+ @stteem
+ Uwem Uke
 
 * https://github.com/tobylonge
-* @tobylonge
-* Oluwatobi Alonge
+ @tobylonge
+ Oluwatobi Alonge
 
 ## Contributing
 If this project sounds interesting to you and you'd like to contribute, thank you!
-First, you can send a mail to buildforsdg@andela.com to indicate your interest, why you'd like to support and what forms of support you can bring to the table, but here are areas we think we'd need the most help in this project :
-1.  area one (e.g this app is about human trafficking and you need feedback on your roadmap and feature list from the private sector / NGOs)
-2.  area two (e.g you want people to opt-in and try using your staging app at staging.project-name.com and report any bugs via a form)
-3.  area three (e.g here is the zoom link to our end-of sprint webinar, join and provide feedback as a stakeholder if you can)
+First, you can send a mail to buildforsdg@andela.com to indicate your interest, why you'd like to support and what forms of support you can bring to the table.
 
 
 ## LICENSE
