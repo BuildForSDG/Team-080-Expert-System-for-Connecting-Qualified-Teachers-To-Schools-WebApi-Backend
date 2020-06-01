@@ -2,10 +2,10 @@ TeachersTurf Web Api
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d489d8f35334ef79f76c5369f1f2c87)](https://app.codacy.com/gh/BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-&utm_campaign=Badge_Grade_Settings)
 
-![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/images/TeacherTurfSignUpPage.png)
-![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/images/TeacherTurfLoginPage.png)
-![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/images/TeacherTurfLoadingPage.png)
-![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/images/TeacherTurfInterviewPage.png)
+![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/images/TeacherTurfSignUpPage.png)
+![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/images/TeacherTurfLoginPage.png)
+![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/images/TeacherTurfLoadingPage.png)
+![alt text](https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/edit/develop/storage/images/TeacherTurfInterviewPage.png)
 
 
 ## About
