@@ -3,11 +3,11 @@ TeachersTurf Web Api
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d489d8f35334ef79f76c5369f1f2c87)](https://app.codacy.com/gh/BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-&utm_campaign=Badge_Grade_Settings)
 
 
-<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfSignUpPage.png" height="300" />
-<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfLoginPage.png" height="300"/>
-<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfDasboardPage.png" height="300"/>
-<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfLoadingPage.png" height="300"/>
-<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfInterviewPage.png" height="300" />
+<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfSignUpPage.png" height="500" />
+<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfLoginPage.png" height="500"/>
+<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfDasboardPage.png" height="500"/>
+<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfLoadingPage.png" height="500"/>
+<img src="https://github.com/BuildForSDG/Team-080-Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-Backend/blob/develop/storage/app/public/TeacherTurfInterviewPage.png" height="500" />
 
 
 
