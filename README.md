@@ -3,10 +3,10 @@ TeachersTurf Web Api
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d489d8f35334ef79f76c5369f1f2c87)](https://app.codacy.com/gh/BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-&utm_campaign=Badge_Grade_Settings)
 
 
-<img src="storage/app/public/images/TeacherTurfSignUpPage.png" />
-<img src="storage/app/public/images/TeacherTurfLoginPage.png" />
-<img src="storage/app/public/images/TeacherTurfLoadingPage.png" />
-<img src="storage/app/public/images/TeacherTurfInterviewPage.png" />
+<img src="images/TeacherTurfSignUpPage.png" />
+<img src="images/TeacherTurfLoginPage.png" />
+<img src="images/TeacherTurfLoadingPage.png" />
+<img src="images/TeacherTurfInterviewPage.png" />
 
 
 
