@@ -1,79 +1,188 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+TeachersTurf Web Api
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d489d8f35334ef79f76c5369f1f2c87)](https://app.codacy.com/gh/BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Expert-System-for-Connecting-Qualified-Teachers-To-Schools-WebApi-&utm_campaign=Badge_Grade_Settings)
 
-## About Laravel
+![picture](images/TeacherTurfSignUpPage.png)
+![picture](images/TeacherTurfLoginPage.png)
+![picture](images/TeacherTurfLoadingPage.png)
+![picture](images/TeacherTurfInterviewPage.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## About
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+TeachersTurf help connects qualified teachers with schools in other to increase access to quality eduction in Nigeria. 
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Why
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This project targets the Goal 4,problem 2 to promote quality eduction in sub saharan africa.
 
-## Laravel Sponsors
+#### Following are the Models
+* Answer
+* City
+* Country
+* Degree
+* Institution
+* InstitutionType
+* Level
+* Profile
+* Qualification
+* Question
+* Quize
+* State
+* User
+* UserType
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+#### Usage
+Clone the project via git clone or download the zip file.
+
+##### .env
+Copy contents of .env.example file to .env file. Create a database and connect your database in .env file.
+##### Composer Install
+cd into the project directory via terminal and run the following  command to install composer packages.
+###### `composer install`
+##### Generate Key
+then run the following command to generate fresh key.
+###### `php artisan key:generate`
+##### Run Migration
+then run the following command to create migrations in the databbase.
+###### `php artisan migrate`
+
+##### Database Seeding
+finally run the following command to seed the database with dummy content.
+###### `php artisan db:seed`
+
+### API EndPoints
+##### User
+* User GET `http://localhost:8000/api/register`
+
+##### Profile
+* Post GET All `http://localhost:8000/api/profiles`
+* Post GET Single `http://localhost:8000/api/profiles/1`
+* Post POST Create `http://localhost:8000/api/profiles/create`
+* Post POST Update `http://localhost:8000/api/profiles`
+* Post DELETE destroy `http://localhost:8000/api/profiles/1`
+
+##### City
+* Post GET All `http://localhost:8000/api/cities`
+* Post GET Single `http://localhost:8000/api/cities/1`
+* Post POST Create `http://localhost:8000/api/cities/create`
+* Post POST Update `http://localhost:8000/api/cities`
+* Post DELETE destroy `http://localhost:8000/api/cities/1`
+
+
+ ##### Country
+* Post GET All `http://localhost:8000/api/countries`
+* Post GET Single `http://localhost:8000/api/countries/1`
+* Post POST Create `http://localhost:8000/api/countries/create`
+* Post POST Update `http://localhost:8000/api/countries`
+* Post DELETE destroy `http://localhost:8000/api/countries/1`
+
+##### Degree
+* Post GET All `http://localhost:8000/api/degrees`
+* Post GET Single `http://localhost:8000/api/degrees/1`
+* Post POST Create `http://localhost:8000/api/degrees/create`
+* Post POST Update `http://localhost:8000/api/degrees`
+* Post DELETE destroy `http://localhost:8000/api/degrees/1`
+
+##### Institution
+* Post GET All `http://localhost:8000/api/institutions`
+* Post GET Single `http://localhost:8000/api/institutions/1`
+* Post POST Create `http://localhost:8000/api/institutions/create`
+* Post POST Update `http://localhost:8000/api/institutions`
+* Post DELETE destroy `http://localhost:8000/api/institutions/1`
+
+##### Institution Type
+* Post GET All `http://localhost:8000/api/institutiontypes`
+* Post GET Single `http://localhost:8000/api/institutiontypes/1`
+* Post POST Create `http://localhost:8000/api/institutiontypes/create`
+* Post POST Update `http://localhost:8000/api/institutiontypes`
+* Post DELETE destroy `http://localhost:8000/api/institutiontypes/1`
+
+##### Level
+* Post GET All `http://localhost:8000/api/levels`
+* Post GET Single `http://localhost:8000/api/levels/1`
+* Post POST Create `http://localhost:8000/api/levels/create`
+* Post POST Update `http://localhost:8000/api/levels`
+* Post DELETE destroy `http://localhost:8000/api/levels/1`
+
+##### Qualification
+* Post GET All `http://localhost:8000/api/qualifications`
+* Post GET Single `http://localhost:8000/api/qualifications/1`
+* Post POST Create `http://localhost:8000/api/qualifications/create`
+* Post POST Update `http://localhost:8000/api/qualifications`
+* Post DELETE destroy `http://localhost:8000/api/qualifications/1`
+           
+##### Question
+* Post GET All `http://localhost:8000/api/questions`
+* Post GET Single `http://localhost:8000/api/questions/1`
+* Post POST Create `http://localhost:8000/api/questions/create`
+* Post POST Update `http://localhost:8000/api/questions`
+* Post DELETE destroy `http://localhost:8000/api/questions/1`
+
+##### Quize
+* Post GET All `http://localhost:8000/api/quizes`
+* Post GET Single `http://localhost:8000/api/quizes/1`
+* Post POST Create `http://localhost:8000/api/quizes/create`
+* Post POST Update `http://localhost:8000/api/quizes`
+* Post DELETE destroy `http://localhost:8000/api/quizes/1`
+
+##### State
+* Post GET All `http://localhost:8000/api/states`
+* Post GET Single `http://localhost:8000/api/states/1`
+* Post POST Create `http://localhost:8000/api/states/create`
+* Post POST Update `http://localhost:8000/api/states`
+* Post DELETE destroy `http://localhost:8000/api/states/1`
+
+##### Subject
+* Post GET All `http://localhost:8000/api/subjects`
+* Post GET Single `http://localhost:8000/api/subjects/1`
+* Post POST Create `http://localhost:8000/api/subjects/create`
+* Post POST Update `http://localhost:8000/api/subjects`
+* Post DELETE destroy `http://localhost:8000/api/subjects/1`
+
+##### Subject
+* Post GET All `http://localhost:8000/api/usertypes`
+* Post GET Single `http://localhost:8000/api/usertypes/1`
+* Post POST Create `http://localhost:8000/api/usertypes/create`
+* Post POST Update `http://localhost:8000/api/usertypes`
+* Post DELETE destroy `http://localhost:8000/api/usertypes/1`
+## Authors
+
+
+* @boyeoffice
+* Olakunle Boye
+* https://github.com/boyeoffice
+
+* https://github.com/rebirthtobi
+
+* @rebirthtobi
+* Tobi Taiwo
+
+* https://github.com/richardiyama
+
+* @richardiyama
+* Richard Iyama Oluwaseun
+
+* https://github.com/shinnida220
+* @Emmanuel
+
+* https://github.com/stteem
+* @stteem
+* Uwem Uke
+
+* https://github.com/tobylonge
+* @tobylonge
+* Oluwatobi Alonge
 
 ## Contributing
+If this project sounds interesting to you and you'd like to contribute, thank you!
+First, you can send a mail to buildforsdg@andela.com to indicate your interest, why you'd like to support and what forms of support you can bring to the table, but here are areas we think we'd need the most help in this project :
+1.  area one (e.g this app is about human trafficking and you need feedback on your roadmap and feature list from the private sector / NGOs)
+2.  area two (e.g you want people to opt-in and try using your staging app at staging.project-name.com and report any bugs via a form)
+3.  area three (e.g here is the zoom link to our end-of sprint webinar, join and provide feedback as a stakeholder if you can)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## LICENSE
+MIT
