@@ -24,4 +24,8 @@ class Institution extends Model
     public function institutiontype(){
         return $this->belongsTo(InstitutionType::class, 'institution_type_id','id');
     }
+
+    public function qualification(){
+        return $this->hasOne(Qualification::class, 'institution_id','id');
+    }
 }
