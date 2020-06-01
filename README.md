@@ -18,7 +18,7 @@ TeachersTurf help connects qualified teachers with schools in other to increase 
 
 ## Why
 
-This project targets the Goal 4,problem 2 to promote quality eduction in sub saharan africa.
+This project targets the Goal 4 to promote quality eduction in sub saharan africa.
 
 #### Following are the Models
 * Answer
