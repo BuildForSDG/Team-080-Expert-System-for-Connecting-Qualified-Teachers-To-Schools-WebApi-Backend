@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+//use Laravel\Passport\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
+    //use HasApiTokens;
     use Notifiable;
 
     /**
@@ -21,9 +24,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_type_id',
         'api_token',
         'email',
+        'phonenumber',
         'email_verified_at',
         'password',
         'is_active',
+        'gender',
+        'country_id',
+        'state_id',
     ];
 
     /**
@@ -51,4 +58,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function usertype(){
         return $this->belongsTo(UserType::class, 'user_type_id','id');
     }
+
+    public function country(){
+        return $this->belongsTo(Country::class, 'country_id','id');
+    }
+
+    public function state(){
+        return $this->belongsTo(State::class, 'state_id','id');
+    }
+
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(){
+        return [];
+    }
+    
 }

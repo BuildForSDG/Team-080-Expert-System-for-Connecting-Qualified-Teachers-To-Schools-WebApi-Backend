@@ -9,8 +9,16 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\UserType;
-
+use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTFactory;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\PayloadFactory;
+use Tymon\JWTAuth\JWTManager as JWT;
+
 class RegisterController extends Controller
 {
     /*
@@ -54,6 +62,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'phonenumber' => 'required',
+            'gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -71,14 +81,18 @@ class RegisterController extends Controller
         return $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
             'email' => $data['email'],
+            'phonenumber' => $data['phonenumber'],
             'password' => Hash::make($data['password']),
             'user_type_id' => 1,
+            'country_id' => $data['country_id'],
+            'state_id' => $data['state_id'],
             'is_active' => 0
         ]);
 
-        return response()->json(['message'=> 'User created', 
-        'user' => $user]);
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('user','token'),201);
     }
 
     public function index()
@@ -86,4 +100,35 @@ class RegisterController extends Controller
 
         return UserResource::collection(User::all());
     }
-}
+
+    public function login(Request $request){
+        $credentials = $request->json()->all();
+
+        try{
+            if(! $token = JWTAuth::attempt($credentials) ){
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+        }catch(JWTException $e){
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+
+            return response()->json(compact('token'));
+        }
+
+        public function getAuthenticatedUser(){
+            try{
+                if(!$user = JWTAuth::parseToken()->authenticate()){
+                    return response()->json(['error' => 'user_not_found'],404);
+                }
+            }catch(Tymon\JWTAuth\Exceptions\TokenExpiredException $e){
+                return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+            }catch(Tymon\JWTAuth\Exceptions\TokenInvalidException $e){
+                return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+            }catch(Tymon\JWTAuth\Exceptions\JWTException $e){
+                return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+            }
+
+            return response()->json(compact('user'));
+        }
+    }
+

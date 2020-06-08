@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\RegisterController@login');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     // Registration Routes...
    
-    Route::get('register', 'Auth\RegisterController@index')->name('register');
+    Route::get('profile', 'Auth\RegisterController@getAuthenticatedUser');
     Route::post('register', 'Auth\RegisterController@register');
     
 

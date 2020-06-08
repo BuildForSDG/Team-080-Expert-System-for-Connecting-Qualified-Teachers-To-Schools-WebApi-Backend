@@ -17,7 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('phonenumber');
             $table->bigInteger('user_type_id');
+            $table->string('gender');
+            $table->bigInteger('country_id');
+            $table->bigInteger('state_id');
             $table->string('api_token', 60)->unique();
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
