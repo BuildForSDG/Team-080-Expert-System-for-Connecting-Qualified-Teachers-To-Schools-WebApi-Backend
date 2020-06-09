@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
    
     Route::get('profile', 'Auth\RegisterController@getAuthenticatedUser');
     Route::post('register', 'Auth\RegisterController@register');
+    Route::get('register', 'Auth\RegisterController@index');
     
 
     
