@@ -27,6 +27,15 @@ class Profile extends Model
     }
 
     public function quize(){
-        return $this->belongsTo(Quize::class, 'profile_id','id');
+        return $this->hasOne(Quize::class, 'profile_id','id');
     }
+
+    public function city(){
+        return $this->belongsTo(City::class, 'city_id','id');
+    }
+
+    public function qualification(){
+        return $this->hasOne(Qualification::class, 'profile_id','id');
+    }
+
 }

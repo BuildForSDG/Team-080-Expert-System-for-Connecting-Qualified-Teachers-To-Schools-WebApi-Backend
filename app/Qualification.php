@@ -20,4 +20,16 @@ class Qualification extends Model
         'end_date',
         'cert_image',
     ];
+
+    public function profile(){
+        return $this->belongsTo(Profile::class, 'profile_id','id');
+    }
+
+    public function institution(){
+        return $this->belongsTo(Institution::class, 'institution_id','id');
+    }
+
+    public function degree(){
+        return $this->belongsTo(Degree::class, 'degree_id','id');
+    }
 }

@@ -15,4 +15,8 @@ class Degree extends Model
             'name',
             'code',
 ];
+
+public function qualification(){
+    return $this->hasOne(Qualification::class, 'degree_id','id');
+}
 }
