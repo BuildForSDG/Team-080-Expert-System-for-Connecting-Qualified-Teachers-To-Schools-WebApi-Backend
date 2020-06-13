@@ -1,0 +1,33 @@
+.main-sidebar {
+    background-color: #222d32;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 230px;
+    z-index: 810;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+    display: block;
+    & .info {
+        color: #fff;
+        padding: 5px 5px 5px 15px;
+        & p {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        & a {
+            color: #fff;
+            font-size: 11px;
+        }
+    }
+    & .user-panel {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        img {
+            max-width: 45px;
+        }
+    }
+}
