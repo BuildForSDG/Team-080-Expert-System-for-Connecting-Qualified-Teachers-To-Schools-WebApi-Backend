@@ -32,6 +32,7 @@ export default {
    },
    created() {
     document.title = "Users | TeacherTurf"
+    this.$store.commit('RECIEVE_TITLE', 'Users')
     // this.$store.dispatch('getAllUsers', this.params)
     this.fetchUsers()
    },

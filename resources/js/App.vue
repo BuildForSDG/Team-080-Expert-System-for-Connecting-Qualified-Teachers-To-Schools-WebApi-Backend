@@ -3,7 +3,7 @@
         <navbar />
         <sidebar />
         <div class="content-wrapper">
-            <section class="content-header"><h1>Manage Users</h1></section>
+            <section class="content-header"><h1>{{ title }}</h1></section>
             <router-view />
         </div>
         <main-footer />
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Navbar from '@/Navbar';
 import Sidebar from '@/Sidebar';
 import MainFooter from '@/Footer';
@@ -19,6 +20,9 @@ export default {
         Navbar,
         Sidebar,
         MainFooter
+    },
+    computed: {
+        ...mapGetters(['title'])
     }
 }
 </script>

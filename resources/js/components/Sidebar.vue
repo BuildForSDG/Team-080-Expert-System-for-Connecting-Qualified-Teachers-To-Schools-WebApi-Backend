@@ -25,6 +25,12 @@
                         <span>Users</span>
                     </a>
                 </router-link>
+                <router-link to="/country" tag="li">
+                    <a>
+                        <i class="fa fa-flag"></i>
+                        <span>Country</span>
+                    </a>
+                </router-link>
             </ul>
         </section>
     </aside>

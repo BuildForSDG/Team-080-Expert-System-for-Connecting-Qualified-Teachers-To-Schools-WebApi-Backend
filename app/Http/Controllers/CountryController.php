@@ -11,9 +11,14 @@ class CountryController extends Controller
         return CountryResource::collection(Country::paginate(5));
     }
 
+    public function getAllCountries(Request $request)
+    {
+        return Country::orderBy('long_name', 'asc')->paginate($request->per_page);
+    }
+
     public function show($id)
         {
-           
+
             return new CountryResource(Country::find($id));
         }
 
@@ -26,24 +31,24 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        
-        'iso_three' => 'required',
-        'iso_two' => 'required',
-        'short_name' => 'required',
-        'long_name' => 'required',
-        'numcode' => 'required',
-        'un_member' => 'required',
-        'calling_code' => 'required',
-        'cctld' => 'required',
-        'currency_name' => 'required',
-        'currency_symbol' => 'required'
-            
+
+        // 'iso_three' => 'required',
+        // 'iso_two' => 'required',
+        // 'short_name' => 'required',
+        'long_name' => 'required|unique:countries',
+        // 'numcode' => 'required',
+        // 'un_member' => 'required',
+        // 'calling_code' => 'required',
+        // 'cctld' => 'required',
+        // 'currency_name' => 'required',
+        // 'currency_symbol' => 'required'
+
         ]);
-        
-       
+
+
         $country = new Country();
-        
-        
+
+
 
         $country->iso_three = $request->get('iso_three');
         $country->iso_two = $request->get('iso_two');
@@ -55,14 +60,19 @@ class CountryController extends Controller
         $country->cctld = $request->get('cctld');
         $country->currency_name = $request->get('currency_name');
         $country->currency_symbol = $request->get('currency_symbol');
-        
-        
-        $country->save();
-        
-       
 
-        return response()->json(['message'=> 'country created', 
+
+        $country->save();
+
+
+
+        return response()->json(['message'=> 'country created',
         'country' => $country]);
+    }
+
+    public function edit($id)
+    {
+        return Country::find($id);
     }
 
   /**
@@ -72,27 +82,27 @@ class CountryController extends Controller
      * @param  UpdateCountry  $country
      * @return IlluminateHttpResponse
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $request->validate([
-        
-            'iso_three' => 'required',
-            'iso_two' => 'required',
-            'short_name' => 'required',
-            'long_name' => 'required',
-            'numcode' => 'required',
-            'un_member' => 'required',
-            'calling_code' => 'required',
-            'cctld' => 'required',
-            'currency_name' => 'required',
-            'currency_symbol' => 'required'
-                
+
+            //'iso_three' => 'required',
+            //'iso_two' => 'required',
+            //'short_name' => 'required',
+            'long_name' => 'required|unique:countries,long_name,'.$id,
+            //'numcode' => 'required',
+            //'un_member' => 'required',
+            //'calling_code' => 'required',
+            //'cctld' => 'required',
+            //'currency_name' => 'required',
+            //'currency_symbol' => 'required'
+
             ]);
-        
-  
-        $country= Country::find($request->input('id'));
-        
-        
+
+
+        $country = Country::find($id);
+
+
 
         $country->iso_three = $request->get('iso_three');
         $country->iso_two = $request->get('iso_two');
@@ -104,13 +114,13 @@ class CountryController extends Controller
         $country->cctld = $request->get('cctld');
         $country->currency_name = $request->get('currency_name');
         $country->currency_symbol = $request->get('currency_symbol');
-        
-        
-        $country->save();
-        
-       
 
-        return response()->json(['message'=> 'country created', 
+
+        $country->update();
+
+
+
+        return response()->json(['message'=> 'country created',
         'country' => $country]);
     }
 
@@ -125,7 +135,7 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
-  
+
         return response()->json([
             'message' => 'country deleted'
         ]);

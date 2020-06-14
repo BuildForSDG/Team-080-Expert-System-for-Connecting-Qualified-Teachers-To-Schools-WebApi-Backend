@@ -33,3 +33,10 @@ Route::group(['prefix' => '/cp', 'middleware' => ['auth']], function() {
 Route::group(['prefix' => '/json/v1', 'namespace' => 'Admin'], function() {
     Route::resource('/users', 'UserController');
 });
+
+Route::group(['prefix' => '/json/v1', 'middleware' => ['auth']], function() {
+    Route::get('country', 'CountryController@getAllCountries');
+    Route::post('country', 'CountryController@store');
+    Route::get('country/{id}/edit', 'CountryController@edit');
+    Route::put('country/{id}', 'CountryController@update');
+});

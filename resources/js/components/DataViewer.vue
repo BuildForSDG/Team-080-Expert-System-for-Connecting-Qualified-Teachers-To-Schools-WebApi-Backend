@@ -1,29 +1,22 @@
 <template>
     <div class="box box-default">
         <div class="box-header with-border">
-            <h2 class="box-title">Users</h2>
-            <div class="box-tools pull-right">
-                <router-link to="/users/create" class="btn btn-success btn-sm">Create</router-link>
+            <h2 class="box-title">{{ title }}</h2>
+            <div class="box-tools pull-right" v-if="create">
+                <router-link :to="create" class="btn btn-sm btn-success">Create</router-link>
             </div>
         </div>
-        <div class="box-body" v-if="models.data.length">
+        <div class="box-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th v-for="(data,index) in theads" :keys="index">{{ data }}</th>
+                        <th v-for="(data,index) in theads" :keys="index">
+                            {{ data }}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) in models.data">
-                        <td>{{ item.first_name + ' ' + item.last_name }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.gender }}</td>
-                        <td>
-                            <router-link to="/" class="btn btn-primary btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </router-link>
-                        </td>
-                    </tr>
+                    <slot v-for="(item,index) in models.data" :item="item"></slot>
                 </tbody>
             </table>
         </div>
@@ -32,6 +25,7 @@
                 <div class="paginate-item">
                     <span>Per page:</span>
                     <select @change="changePerPage" v-model="per_page">
+                        <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="20">20</option>
                     </select>
@@ -45,8 +39,20 @@
                     <small>of 1</small>
                 </div>
                 <div class="paginate-item">
-                    <button class="btn btn-default btn-sm" @click="$emit('callPage', 'prev')">Prev</button>
-                    <button class="btn btn-default btn-sm" @click="$emit('callPage', 'next')">Next</button>
+                    <button
+                        class="btn btn-default btn-sm"
+                        @click="$emit('callPage', 'prev')"
+                        :disabled="! models.prev_page_url"
+                    >
+                        Prev
+                    </button>
+                    <button
+                        class="btn btn-default btn-sm"
+                        @click="$emit('callPage', 'next')"
+                        :disabled="! models.next_page_url"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -55,18 +61,24 @@
 
 <script>
 export default {
-    name: 'BoxTable',
+    name: 'DataViewer',
     props: {
-        models: {
-            type: Object
+        title: {
+            type: String
         },
         theads: {
             type: Array
+        },
+        models: {
+            type: Object
+        },
+        create: {
+            type: String
         }
     },
     data() {
         return {
-            per_page: 10
+            per_page: 5
         }
     },
     methods: {
@@ -76,3 +88,14 @@ export default {
     }
 }
 </script>
+
+<style>
+    .pagination-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .paginate-input {
+        width: 45px;
+    }
+</style>

@@ -36,7 +36,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ]);
+        return ['success' => true];
     }
 
     /**

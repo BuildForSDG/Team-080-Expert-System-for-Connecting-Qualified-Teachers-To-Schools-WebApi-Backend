@@ -3,7 +3,10 @@ import VueRouter from 'vue-router';
 
 import {
     Dashboard,
-    Users
+    Users,
+    UserForm,
+    Country,
+    CountryForm
 } from '../config/route-components';
 
 Vue.use(VueRouter);
@@ -17,6 +20,31 @@ const routes = [
         path: '/users',
         component: Users,
         name: 'Users'
+    },
+    {
+        path: '/users/create',
+        component: UserForm,
+        name: 'UserForm',
+        mode: 'create'
+    },
+    {
+        path: '/country',
+        component: Country,
+        name: 'Country'
+    },
+    {
+        path: '/country/create',
+        component: CountryForm,
+        name: 'CountryForm',
+        mode: 'create'
+    },
+    {
+        path: '/country/:id/edit',
+        component: CountryForm,
+        name: 'CountryForm',
+        meta: {
+            mode: 'edit'
+        }
     }
 ]
 
