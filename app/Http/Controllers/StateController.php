@@ -11,11 +11,18 @@ class StateController extends Controller
         return StateResource::collection(State::with(['country'])->paginate(5));
     }
 
-    public function show($id)
-        {
+    public function getStates(Request $request)
+    {
+        return State::where('country_id', $request->country_id)
+                ->orderBy('name', 'asc')
+                ->paginate($request->per_page);
+    }
 
-            return new StateResource(State::find($id));
-        }
+    public function show($id)
+    {
+
+        return new StateResource(State::find($id));
+    }
 
          /**
      * Store a newly created resource in storage.

@@ -42,5 +42,6 @@ Route::group(['prefix' => '/json/v1', 'middleware' => ['auth']], function() {
     Route::put('country/{id}', 'CountryController@update');
 
     // States Route
+    Route::get('states', 'StateController@getStates');
     Route::post('states', 'StateController@store');
 });

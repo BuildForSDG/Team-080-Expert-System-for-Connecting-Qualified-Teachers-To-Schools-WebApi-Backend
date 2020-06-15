@@ -26,6 +26,22 @@
                         <button class="btn btn-danger">Reset</button>
                     </div>
                 </div>
+                <data-viewer
+                    :theads="theads"
+                    :models="allStates"
+                    title="States"
+                >
+                    <template slot-scope="props">
+                        <tr>
+                            <td>{{ props.item.name }}</td>
+                            <td>
+                                <router-link :to="'/state/'+props.item.id+'/edit'" class="btn btn-primary btn-sm">
+                                    Edit
+                                </router-link>
+                            </td>
+                        </tr>
+                    </template>
+                </data-viewer>
             </div>
             <div class="col-md-4" v-if=" $route.meta.mode === 'edit' ">
                 <div class="box box-primary">
@@ -59,8 +75,12 @@
 </template>
 
 <script>
+import DataViewer from '@/DataViewer'
 export default {
     name: 'CountryForm',
+    components: {
+        DataViewer
+    },
     data() {
         return {
             form: {},
@@ -69,7 +89,13 @@ export default {
                 {name:''},
                 {name:''},
                 {name:''}
-            ]
+            ],
+            theads: ['ID', 'Name'],
+            allStates: {data: []},
+            params: {
+                page: 1,
+                per_page: 5
+            }
         }
     },
     created() {
@@ -101,6 +127,7 @@ export default {
         editCountry() {
             axios.get('/json/v1/country/'+this.$route.params.id+'/edit').then(res => {
                 this.form = res.data
+                this.getAllStates(res.data.id)
             }).catch(err => {
                 //
             })
@@ -111,6 +138,18 @@ export default {
             form.states = this.states
             axios.post('/json/v1/states', form).then(res => {
                 //
+            }).catch(err => {
+                //
+            })
+        },
+        getAllStates(id) {
+            axios.get('/json/v1/states', {
+                params:{
+                    country_id: id,
+                    page: this.params.page,
+                    per_page: this.params.per_page
+                }}).then(res => {
+                this.allStates = res.data
             }).catch(err => {
                 //
             })
