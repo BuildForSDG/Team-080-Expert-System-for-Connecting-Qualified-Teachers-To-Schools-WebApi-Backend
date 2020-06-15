@@ -27,6 +27,33 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4" v-if=" $route.meta.mode === 'edit' ">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <form>
+                            <div class="form-group" v-for="(item,index) in states">
+                                <label for="name">State Name</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" v-model="item.name">
+                                    <div class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            @click="states.splice(index,1)"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-success" @click="states.push({name: ''})">Add</button>
+                        <button type="button" class="btn btn-primary" @click="createState">save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -36,7 +63,13 @@ export default {
     name: 'CountryForm',
     data() {
         return {
-            form: {}
+            form: {},
+            states: [
+                {name:''},
+                {name:''},
+                {name:''},
+                {name:''}
+            ]
         }
     },
     created() {
@@ -68,6 +101,16 @@ export default {
         editCountry() {
             axios.get('/json/v1/country/'+this.$route.params.id+'/edit').then(res => {
                 this.form = res.data
+            }).catch(err => {
+                //
+            })
+        },
+        createState() {
+            var form = {}
+            form.country_id = this.form.id
+            form.states = this.states
+            axios.post('/json/v1/states', form).then(res => {
+                //
             }).catch(err => {
                 //
             })

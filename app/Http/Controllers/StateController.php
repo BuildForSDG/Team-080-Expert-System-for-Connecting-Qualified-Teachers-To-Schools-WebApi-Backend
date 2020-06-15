@@ -13,7 +13,7 @@ class StateController extends Controller
 
     public function show($id)
         {
-           
+
             return new StateResource(State::find($id));
         }
 
@@ -26,30 +26,21 @@ class StateController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        
-            'name' => 'required'
-            
+
+            'states' => 'required|array|min:1',
+            'states.*.name' => 'required|unique:states',
+            'country_id' => 'required|integer'
+
         ]);
-        
-       
-        $state = new State();
-        
-        
 
-        $state->name = $request->get('name');
-        $state->country_id = $request->get('country_id');
-        
-        
-        
-       
-        
-        
-        $state->save();
-        
-       
+        foreach ($request->states as $data) {
+            State::create([
+                'name' => $data['name'],
+                'country_id' => $request->get('country_id')
+            ]);
+        }
 
-        return response()->json(['message'=> 'state created', 
-        'state' => $state]);
+        return response()->json(['message'=> 'state created']);
     }
 
   /**
@@ -62,29 +53,29 @@ class StateController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-        
-            'name' => 'required'
-            
-        ]);
-  
-        $state = State::find($request->input('id'));
-        
-        
 
-        
+            'name' => 'required'
+
+        ]);
+
+        $state = State::find($request->input('id'));
+
+
+
+
         $state->name = $request->get('name');
         $state->country_id = $request->get('country_id');
-        
-        
-        
-       
-        
-        
-        $state->save();
-        
-       
 
-        return response()->json(['message'=> 'state updated', 
+
+
+
+
+
+        $state->save();
+
+
+
+        return response()->json(['message'=> 'state updated',
         'state' => $state]);
     }
 
@@ -99,7 +90,7 @@ class StateController extends Controller
     public function destroy(State $state)
     {
         $state->delete();
-  
+
         return response()->json([
             'message' => 'state deleted'
         ]);
