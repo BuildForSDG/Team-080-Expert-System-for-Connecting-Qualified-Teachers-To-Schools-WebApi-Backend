@@ -44,4 +44,9 @@ Route::group(['prefix' => '/json/v1', 'middleware' => ['auth']], function() {
     // States Route
     Route::get('states', 'StateController@getStates');
     Route::post('states', 'StateController@store');
+    Route::get('states/{id}/edit', 'StateController@edit');
+
+    //Cities Route
+    Route::get('city', 'CityController@getAllTowns');
+    Route::post('city', 'CityController@store');
 });

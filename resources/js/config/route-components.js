@@ -24,3 +24,8 @@ export const CountryForm = Vue.component(
     'CountryForm',
     require('_/Country/form.vue')
 );
+
+export const EditStateForm = Vue.component(
+    'EditStateForm',
+    require('_/Country/edit-state.vue')
+);

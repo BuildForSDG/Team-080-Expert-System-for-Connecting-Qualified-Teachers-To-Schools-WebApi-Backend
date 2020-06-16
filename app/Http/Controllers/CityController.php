@@ -11,11 +11,18 @@ class CityController extends Controller
         return CityResource::collection(City::with(['state','quize'])->paginate(5));
     }
 
+    public function getAllTowns(Request $request)
+    {
+        return City::where('state_id', $request->state_id)
+                ->orderBy('name', 'asc')
+                ->paginate($request->per_page);
+    }
+
     public function show($id)
-        {
-           
-            return new CityResource(city::find($id));
-        }
+    {
+
+        return new CityResource(city::find($id));
+    }
 
          /**
      * Store a newly created resource in storage.
@@ -26,28 +33,21 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        
-            'name' => 'required'
-            
+
+            'towns' => 'required|array|min:1',
+            'towns.*.name' => 'required|unique:cities',
+            'state_id' => 'required'
+
         ]);
-        
-       
-        $city = new City();
-        
-        
 
-        $city->name = $request->get('name');
-        $city->state_id = $request->get('state_id');
-        
-        
-       
-        
-        $city->save();
-        
-       
+        foreach ($request->towns as $item) {
+            City::create([
+                'name' => $item['name'],
+                'state_id' => $request['state_id']
+            ]);
+        }
 
-        return response()->json(['message'=> 'city created', 
-        'city' => $city]);
+        return response()->json(['message'=> 'city created']);
     }
 
   /**
@@ -60,27 +60,27 @@ class CityController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-        
+
             'name' => 'required'
-            
+
         ]);
-        
-  
+
+
         $city = City::find($request->input('id'));
-        
-        
+
+
 
         $city->name = $request->get('name');
         $city->state_id = $request->get('state_id');
-        
-        
-       
-        
-        $city->save();
-        
-       
 
-        return response()->json(['message'=> 'city updated', 
+
+
+
+        $city->save();
+
+
+
+        return response()->json(['message'=> 'city updated',
         'city' => $city]);
     }
 
@@ -95,7 +95,7 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         $city->delete();
-  
+
         return response()->json([
             'message' => 'city deleted'
         ]);

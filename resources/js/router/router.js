@@ -6,7 +6,8 @@ import {
     Users,
     UserForm,
     Country,
-    CountryForm
+    CountryForm,
+    EditStateForm
 } from '../config/route-components';
 
 Vue.use(VueRouter);
@@ -42,6 +43,13 @@ const routes = [
         path: '/country/:id/edit',
         component: CountryForm,
         name: 'CountryForm',
+        meta: {
+            mode: 'edit'
+        }
+    },
+    {
+        path: '/state/:id/edit',
+        component: EditStateForm,
         meta: {
             mode: 'edit'
         }

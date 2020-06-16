@@ -50,6 +50,11 @@ class StateController extends Controller
         return response()->json(['message'=> 'state created']);
     }
 
+    public function edit($id)
+    {
+        return State::find($id);
+    }
+
   /**
      * Update the specified resource in storage.
      *
