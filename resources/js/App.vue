@@ -21,6 +21,9 @@ export default {
         Sidebar,
         MainFooter
     },
+    created(){
+        this.$store.dispatch('userProfile')
+    },
     computed: {
         ...mapGetters(['title'])
     }

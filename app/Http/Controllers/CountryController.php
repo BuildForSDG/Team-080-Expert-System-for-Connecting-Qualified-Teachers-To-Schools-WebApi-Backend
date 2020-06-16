@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class CountryController extends Controller
 {
     public function index(){
-        return CountryResource::collection(Country::paginate(5));
+        //return CountryResource::collection(Country::paginate(5));
+        return Country::select('id','long_name')->get();
     }
 
     public function getAllCountries(Request $request)

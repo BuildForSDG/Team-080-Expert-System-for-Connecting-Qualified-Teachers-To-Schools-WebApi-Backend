@@ -9,3 +9,7 @@ export const title = state => {
 export const country = state => {
     return state.country.model
 }
+
+export const profile = state => {
+    return state.profile.data
+}

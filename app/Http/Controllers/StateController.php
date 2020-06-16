@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class StateController extends Controller
 {
-    public function index(){
-        return StateResource::collection(State::with(['country'])->paginate(5));
+    public function index(Request $request){
+        $request->validate([
+            'country_id' => 'required|integer'
+        ]);
+
+        // return StateResource::collection(State::with(['country'])->paginate(5));
+        return State::select('id','name')->where('country_id', $request->country_id)->get();
     }
 
     public function getStates(Request $request)

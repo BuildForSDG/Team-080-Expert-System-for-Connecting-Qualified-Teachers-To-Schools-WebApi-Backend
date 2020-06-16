@@ -13,14 +13,18 @@ class Profile extends Model
      */
     protected $fillable = [
         'user_id',
-        'firstname',
-        'lastname',
+        'first_name',
+        'last_name',
         'mobile_number',
         'address',
         'gender',
         'date_of_birth',
         'city_id',
+        'country_id',
+        'state_id'
     ];
+
+    public $timestamps = false;
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id','id');

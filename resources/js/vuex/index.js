@@ -6,6 +6,7 @@ import * as getters from './getters';
 import users from './modules/users';
 import title from './modules/title';
 import country from './modules/country';
+import profile from './modules/profile';
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export const store = new Vuex.Store({
     modules: {
         users,
         title,
-        country
+        country,
+        profile
     }
 })

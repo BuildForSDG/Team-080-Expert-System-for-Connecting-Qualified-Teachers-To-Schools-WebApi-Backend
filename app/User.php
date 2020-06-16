@@ -19,18 +19,12 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
         'user_type_id',
         'api_token',
         'email',
-        'phonenumber',
         'email_verified_at',
         'password',
         'is_active',
-        'gender',
-        'country_id',
-        'state_id',
     ];
 
     /**
@@ -74,5 +68,5 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
     public function getJWTCustomClaims(){
         return [];
     }
-    
+
 }

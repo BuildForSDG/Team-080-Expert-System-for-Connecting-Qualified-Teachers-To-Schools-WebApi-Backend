@@ -13,7 +13,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                           <img src="/img/default.png" class="user-image" alt="User Image">
-                          <span class="hidden-xs">Alexander Pierce</span>
+                          <span class="hidden-xs" v-if="profile">{{ profile.first_name+' '+profile.last_name }}</span>
                         </a>
                     </li>
                     <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
@@ -22,3 +22,12 @@
         </nav>
     </header>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+export default {
+    computed: {
+        ...mapGetters(['profile'])
+    }
+}
+</script>

@@ -7,8 +7,12 @@ use App\Http\Resources\CityResource;
 use App\City;
 class CityController extends Controller
 {
-    public function index(){
-        return CityResource::collection(City::with(['state','quize'])->paginate(5));
+    public function index(Request $request){
+        $request->validate([
+            'state_id' => 'required|integer'
+        ]);
+        //return CityResource::collection(City::with(['state','quize'])->paginate(5));
+        return City::select('id','name')->where('state_id', $request->state_id)->get();
     }
 
     public function getAllTowns(Request $request)

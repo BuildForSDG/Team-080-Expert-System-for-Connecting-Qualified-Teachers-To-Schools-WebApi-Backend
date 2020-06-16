@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Profile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +63,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phonenumber' => 'required',
+            'mobile_number' => 'required',
             'gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -77,18 +78,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        return $user = User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'gender' => $data['gender'],
+
+        $user = User::create([
             'email' => $data['email'],
-            'phonenumber' => $data['phonenumber'],
             'password' => Hash::make($data['password']),
             'user_type_id' => 1,
             'country_id' => $data['country_id'],
             'state_id' => $data['state_id'],
             'is_active' => 0
+        ]);
+
+        Profile([
+            'user_id' => $user->id,
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
+            'mobile_number' => $data['mobile_number'],
         ]);
 
         $token = JWTAuth::fromUser($user);

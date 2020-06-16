@@ -28,3 +28,14 @@ export const getAllCountries = ({commit}, payload) => {
         })
     })
 }
+
+export const userProfile = ({commit}) => {
+    return new Promise((resolve, reject) => {
+        axios.get('/json/v1/profile').then(res => {
+            commit('RECIEVE_PROFILE', res.data)
+            resolve()
+        }).catch(err => {
+            reject()
+        })
+    })
+}

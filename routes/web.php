@@ -35,6 +35,8 @@ Route::group(['prefix' => '/json/v1', 'namespace' => 'Admin'], function() {
 });
 
 Route::group(['prefix' => '/json/v1', 'middleware' => ['auth']], function() {
+    // Profile Route
+    Route::get('profile', 'ProfileController@user_profile');
     // Countries Route
     Route::get('country', 'CountryController@getAllCountries');
     Route::post('country', 'CountryController@store');

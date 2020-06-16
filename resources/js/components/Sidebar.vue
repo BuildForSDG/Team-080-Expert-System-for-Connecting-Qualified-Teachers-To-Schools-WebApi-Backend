@@ -6,7 +6,7 @@
                   <img src="/img/default.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                  <p>Alexander Pierce</p>
+                  <p v-if="profile">{{ profile.first_name+' '+profile.last_name }}</p>
                   <a href="#"><i class="fa fa-user text-success"></i> Profile</a>
                   <a href="#"><i class="fa fa-power-off text-warning"></i> Logout</a>
                 </div>
@@ -35,3 +35,12 @@
         </section>
     </aside>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+export default {
+    computed: {
+        ...mapGetters(['profile'])
+    }
+}
+</script>

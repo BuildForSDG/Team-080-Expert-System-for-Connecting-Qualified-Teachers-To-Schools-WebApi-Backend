@@ -53,6 +53,7 @@ then run the following command to generate fresh key.
 ##### Run Migration
 then run the following command to create migrations in the databbase.
 ###### `php artisan migrate`
+###### `php artisan db:seed`
 
 ### API EndPoints
 ##### User
