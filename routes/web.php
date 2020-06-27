@@ -17,17 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 Auth::routes(['register' => false]);
 
-// Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => '/cp', 'middleware' => ['auth']], function() {
-    Route::get('{path?}', function() {
-        return view('cp');
-    })->where('path', '[\/\w\.-]*');
-});
+
 
 // Users Routes
 Route::group(['prefix' => '/json/v1', 'namespace' => 'Admin'], function() {
