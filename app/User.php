@@ -19,7 +19,13 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
      * @var array
      */
     protected $fillable = [
+        'first_name',
+        'last_name',
+        'phonenumber',
         'user_type_id',
+        'gender',
+        'country_id',
+        'state_id',
         'api_token',
         'email',
         'email_verified_at',

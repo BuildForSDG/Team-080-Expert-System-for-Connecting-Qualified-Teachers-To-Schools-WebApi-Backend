@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 </head>
 <body class="skin-purple sidebar-mini">
-    <div id="app" class="app"></div>
+    <div class="app">
+    @yield('content')
+    </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/app.js')}}"></script>

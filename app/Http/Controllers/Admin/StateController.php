@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Resources\StateResource;
 use App\State;
+use App\Country;
 use Illuminate\Http\Request;
 
 class StateController extends Controller
@@ -10,7 +11,9 @@ class StateController extends Controller
     public function index(Request $request){
         
 
-        return StateResource::collection(State::with(['country'])->paginate(5));
+        $states = State::with(['country'])->paginate(5);
+
+        return view('state.states')->withStates($states);
        
     }
 
@@ -19,7 +22,24 @@ class StateController extends Controller
     public function show($id)
     {
 
-        return new StateResource(State::find($id));
+    $state = State::find($id);
+
+    return view('state.state')->withState($state);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $countries = Country::all();
+        return view('state.create')->with([
+            'countries'  => $countries
+            
+   
+           ]);
     }
 
          /**
@@ -51,7 +71,7 @@ class StateController extends Controller
 
         $state->save();
 
-        return response()->json(['message'=> 'state created']);
+        return redirect('/states')->with('success', 'State Created!');
     }
 
     public function edit($id)
@@ -91,8 +111,7 @@ class StateController extends Controller
 
 
 
-        return response()->json(['message'=> 'state updated',
-        'state' => $state]);
+        return redirect('/states')->with('success', 'State Updated!');
     }
 
 
@@ -107,8 +126,7 @@ class StateController extends Controller
     {
         $state->delete();
 
-        return response()->json([
-            'message' => 'state deleted'
-        ]);
+        return redirect()->route('state.states')
+        ->with('success','State deleted successfully');
     }
 }

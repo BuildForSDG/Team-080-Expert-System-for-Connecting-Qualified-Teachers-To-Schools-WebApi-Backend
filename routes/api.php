@@ -46,6 +46,13 @@ use Illuminate\Support\Facades\Route;
     Route::post('profiles', 'ProfileController@update');
     Route::delete('profiles/{id}', 'ProfileController@destory');
 
+ //Answer Routes
+ Route::get('answers', 'AnswerController@index');
+ Route::get('answers/{id}', 'AnswerController@show');
+ Route::post('answers/create', 'AnswerController@store');
+ Route::post('answers', 'AnswerController@update');
+ Route::delete('answers/{id}', 'AnswerController@destory');
+
      //City Routes
      Route::get('cities', 'CityController@index');
      Route::get('cities/{id}', 'CityController@show');

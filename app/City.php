@@ -20,10 +20,6 @@ public function state(){
     return $this->belongsTo(State::class, 'state_id','id');
 }
 
-public function quize(){
-    return $this->belongsTo(Quize::class, 'profile_id','id');
-}
-
 public function profile(){
     return $this->hasOne(Profile::class, 'city_id','id');
 }

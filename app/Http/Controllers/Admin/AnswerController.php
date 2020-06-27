@@ -4,17 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Answer;
+use App\Question;
 class AnswerController extends Controller
 {
     public function index(){
-        return AnswerResource::collection(Answer::with(['question'])->paginate(5));
+        $answers = Answer::with(['question'])->paginate(5);
+        return view('answer.answers')->withAnswers($answers);
     }
 
     public function show($id)
         {
            
-            return new AnswerResource(Answer::find($id));
+            $answer = Answer::find($id);
+            return view('answer.answer')->withAnswer($answer);
+
         }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $questions = Question::all();
+        return view('answer.create')->with([
+            'questions'  => $questions
+            
+   
+           ]);
+    }
+  
 
          /**
      * Store a newly created resource in storage.
@@ -59,8 +79,7 @@ class AnswerController extends Controller
         
        
 
-        return response()->json(['message'=> 'answer created', 
-        'answer' => $answer]);
+        return redirect('/answers')->with('success', 'Answer Created!');
     }
 
   /**
@@ -107,8 +126,7 @@ class AnswerController extends Controller
         
        
 
-        return response()->json(['message'=> 'answer updated', 
-        'answer' => $answer]);
+        return redirect('/answers')->with('success', 'Answer Updated!');
     }
 
 
@@ -123,8 +141,8 @@ class AnswerController extends Controller
     {
         $answer->delete();
   
-        return response()->json([
-            'message' => 'answer deleted'
-        ]);
+        return redirect()->route('answer.answers')
+        ->with('success','Answer deleted successfully');
+
     }
 }
