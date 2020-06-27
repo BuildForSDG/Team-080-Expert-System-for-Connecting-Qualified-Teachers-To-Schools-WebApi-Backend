@@ -21,14 +21,10 @@ Auth::routes(['verify' => true]);
 
 Auth::routes(['register' => false]);
 
- Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-// Users Routes
-Route::group(['prefix' => '/json/v1', 'namespace' => 'Admin'], function() {
-    Route::resource('/users', 'UserController');
-});
 
 Route::middleware(['auth'])->group(function(){
 
