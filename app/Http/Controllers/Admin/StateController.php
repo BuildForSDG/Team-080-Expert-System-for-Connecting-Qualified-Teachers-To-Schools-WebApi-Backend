@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 use App\Http\Resources\StateResource;
 use App\State;
 use App\Country;
