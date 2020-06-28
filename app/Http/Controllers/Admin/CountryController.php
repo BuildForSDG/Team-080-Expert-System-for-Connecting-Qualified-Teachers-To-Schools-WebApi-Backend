@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 use App\Http\Resources\CountryResource;
 use App\Country;
 use Illuminate\Http\Request;

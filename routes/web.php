@@ -29,12 +29,12 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth'])->group(function(){
 
     //Answer Routes
-   Route::get('answers', 'AnswerController@index');
-   Route::get('answers/{id}', 'AnswerController@show')->name('answers.show');
-   Route::get('answers/create','AnswerController@create')->name('answers.create');
-   Route::post('answers/create', 'AnswerController@store')->name('answers.store');
-   Route::post('answers', 'AnswerController@update')->name('answers.update');
-   Route::delete('answers/{id}', 'AnswerController@destory')->name('answers.destory');
+   Route::get('answers', 'Admin\AnswerController@index');
+   Route::get('answers/{id}', 'Admin\AnswerController@show')->name('answers.show');
+   Route::get('answers/create','Admin\AnswerController@create')->name('answers.create');
+   Route::post('answers', 'Admin\AnswerController@store')->name('answers.store');
+   Route::post('answers', 'Admin\AnswerController@update')->name('answers.update');
+   Route::delete('answers/{id}', 'Admin\AnswerController@destory')->name('answers.destory');
    //City Routes
    Route::get('cities', 'CityController@index');
    Route::get('cities/{id}', 'CityController@show')->name('cities.show');

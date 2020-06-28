@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 use App\Http\Resources\QuestionResource;
 use App\Question;
 use App\Subject;
