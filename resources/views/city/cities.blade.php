@@ -4,10 +4,10 @@
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Answers</h2>
+                <h2> Cities</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('answers.create') }}"> Create New Answers</a>
+                <a class="btn btn-success" href="{{ route('cities.create') }}"> Create New Cities</a>
             </div>
         </div>
     </div>

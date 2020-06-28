@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Auth::routes(['verify' => true]);
 
-Auth::routes(['register' => false]);
+//Auth::routes(['register' => false]);
 
-// Route::get('/home', 'HomeController@index')->name('home');
+ //Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -83,3 +83,14 @@ Route::middleware(['auth'])->group(function(){
        Route::delete('subjects/{id}', 'SubjectController@destory')->name('states.destory');
 
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes(['verify' => true]);
+Auth::routes();
