@@ -8,14 +8,26 @@ use Illuminate\Http\Request;
 class SubjectController extends Controller
 {
     public function index(){
-        return SubjectResource::collection(Subject::with(['level'])->paginate(5));
+        $subjects = Subject::with(['level'])->paginate(5);
+        return view('subject.subjects')->withSubjects($subjects);
     }
 
     public function show($id)
         {
            
-            return new SubjectResource(Subject::find($id));
+            $subject = Subject::find($id);
+            return view('subject.subject')->withSubject($subject);
         }
+
+         /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('subject.create');
+    }
 
          /**
      * Store a newly created resource in storage.
@@ -48,8 +60,7 @@ class SubjectController extends Controller
         
        
 
-        return response()->json(['message'=> 'subject created', 
-        'subject' => $subject]);
+        return redirect('/subjects')->with('success', 'Subject Created!');
     }
 
   /**
@@ -84,8 +95,7 @@ class SubjectController extends Controller
         
        
 
-        return response()->json(['message'=> 'subject updated', 
-        'subject' => $subject]);
+        return redirect('/subjects')->with('success', 'Subject Updated!');
     }
 
 
@@ -100,8 +110,7 @@ class SubjectController extends Controller
     {
         $subject->delete();
   
-        return response()->json([
-            'message' => 'subject deleted'
-        ]);
+        return redirect()->route('subject.subjects')
+        ->with('success','Subject deleted successfully');
     }
 }

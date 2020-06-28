@@ -8,15 +8,27 @@ use Illuminate\Http\Request;
 class CountryController extends Controller
 {
     public function index(){
-        return CountryResource::collection(Country::paginate(5));
+        $countries = Country::paginate(5);
+        return view('country.countries')->withCountries($countries);
         
     }
 
     
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('country.create');
+    }
+  
     public function show($id)
         {
 
-            return new CountryResource(Country::find($id));
+            $country = Country::find($id);
+            return view('country.country')->withCountry($country);
         }
 
          /**
@@ -49,8 +61,7 @@ class CountryController extends Controller
 
 
 
-        return response()->json(['message'=> 'country created',
-        'country' => $country]);
+        return redirect('/countries')->with('success', 'Country Created!');
     }
 
     public function edit($id)
@@ -88,8 +99,7 @@ class CountryController extends Controller
 
 
 
-        return response()->json(['message'=> 'country updated',
-        'country' => $country]);
+        return redirect('/countries')->with('success', 'Country Updated!');
     }
 
 
@@ -104,8 +114,7 @@ class CountryController extends Controller
     {
         $country->delete();
 
-        return response()->json([
-            'message' => 'country deleted'
-        ]);
+        return redirect()->route('country.countries')
+        ->with('success','Country deleted successfully');
     }
 }

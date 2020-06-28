@@ -5,21 +5,40 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\CityResource;
 use App\City;
+use App\State;
 class CityController extends Controller
 {
     public function index(Request $request){
         
-        return CityResource::collection(City::with(['state','quize'])->paginate(5));
-        
+        $cities = City::with(['state','quize'])->paginate(5);
+
+        return view('city.cities')->withCities($cities);
     }
 
     
     public function show($id)
     {
 
-        return new CityResource(city::find($id));
+        $city = city::find($id);
+        return view('city.city')->withCity($city);
+
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $states = State::all();
+        return view('city.create')->with([
+            'states'  => $states
+            
+   
+           ]);
+    }
+  
          /**
      * Store a newly created resource in storage.
      *
@@ -48,7 +67,7 @@ class CityController extends Controller
         $city->save();
 
 
-        return response()->json(['message'=> 'city created']);
+        return redirect('/cities')->with('success', 'City Created!');
     }
 
   /**
@@ -81,8 +100,7 @@ class CityController extends Controller
 
 
 
-        return response()->json(['message'=> 'city updated',
-        'city' => $city]);
+        return redirect('/cities')->with('success', 'City Updated!');
     }
 
 
@@ -90,15 +108,14 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\City  $profile
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)
     {
         $city->delete();
 
-        return response()->json([
-            'message' => 'city deleted'
-        ]);
+        return redirect()->route('city.cities')
+        ->with('success','City deleted successfully');
     }
 }
