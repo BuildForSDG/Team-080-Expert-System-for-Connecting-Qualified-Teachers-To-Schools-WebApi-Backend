@@ -40,18 +40,15 @@
             <td>{{$state->name}}</td>
             
             <td>
-            <form action="{{ route('states.destroy',$state->id) }}" method="POST">
+            
    
-   <a class="btn btn-info" href="{{ route('states.show',$state->id) }}">Edit</a>
-
-   
-
-   @csrf
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="{{ route('states.show',$state->id) }}">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/{{ $state->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

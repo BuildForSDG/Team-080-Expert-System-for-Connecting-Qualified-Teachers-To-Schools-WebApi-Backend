@@ -21,13 +21,13 @@
             <?php echo csrf_field(); ?>
             <div class="form-group">
 
-<label for="name">Question:</label>
-<input type="text" class="form-control" name="name" value=<?php echo e($question->name); ?>/>
+<label for="question">Question:</label>
+<input type="text" class="form-control" name="question" value=<?php echo e($question->question); ?>/>
 </div>
 
 <div class="form-group">
 <label for="is_active">Is Active?:</label>
-<input type="checkbox" class="form-control" name="is_active" value=<?php echo e($question->name); ?> />
+<input type="checkbox" class="form-control" name="is_active" value=<?php echo e($question->is_active); ?> />
 </div>
 
 <div class="form-group">
@@ -60,7 +60,7 @@
 <label for="home_content" class="col-md-2 col-form-label">Subject</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="subject_name" id="subject_name" required>
 <option selected>Select A Subject</option>
 <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 <option value="<?php echo e($subject->id); ?>"><?php echo e($subject->name); ?></option>

@@ -7,7 +7,7 @@
                 <h2>Countries</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('countries.create') }}"> Create New Countries</a>
+                <a class="btn btn-success" href="{{ route('countries.create') }}"> Create Countries</a>
             </div>
         </div>
     </div>
@@ -37,21 +37,18 @@
     <tbody>
         @foreach($countries as $country)
         <tr>
-            <td>{{$country->name}}</td>
+            <td>{{$country->long_name}}</td>
             
             <td>
-            <form action="{{ route('countries.destroy',$country->id) }}" method="POST">
+            
    
    <a class="btn btn-info" href="{{ route('countries.show',$country->id) }}">Edit</a>
 
    
 
-   @csrf
    
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
             </td>
+            <td><a class="btn btn-danger" href = 'delete/{{ $country->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

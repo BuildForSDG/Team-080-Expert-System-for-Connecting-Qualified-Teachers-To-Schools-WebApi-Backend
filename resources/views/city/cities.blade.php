@@ -40,18 +40,15 @@
             <td>{{$city->name}}</td>
             
             <td>
-            <form action="{{ route('cities.destroy',$city->id) }}" method="POST">
+            
    
    <a class="btn btn-info" href="{{ route('cities.show',$city->id) }}">Edit</a>
 
    
 
-   @csrf
    
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
             </td>
+            <td><a class="btn btn-danger" href = 'delete/{{ $city->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

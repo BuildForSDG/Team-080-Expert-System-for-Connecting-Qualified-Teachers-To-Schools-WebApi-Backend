@@ -82,12 +82,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/answers') }}">Answer</a>
-                    <a href="{{ url('/cities') }}">City</a>
-                    <a href="{{ url('/levels') }}">Level</a>
-                    <a href="{{ url('/questions') }}">Question</a>
-                    <a href="{{ url('/states') }}">State</a>
-                    <a href="{{ url('/subjects') }}">Subject</a>
+                   
                    
                 </div>
             </div>

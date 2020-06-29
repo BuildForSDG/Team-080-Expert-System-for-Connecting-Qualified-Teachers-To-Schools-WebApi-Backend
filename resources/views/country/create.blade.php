@@ -4,6 +4,7 @@
 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
+    
         <h1 class="display-3">Create Countries </h1>
 
         @if ($errors->any())

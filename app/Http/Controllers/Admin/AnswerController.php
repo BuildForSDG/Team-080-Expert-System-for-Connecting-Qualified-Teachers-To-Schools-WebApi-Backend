@@ -16,7 +16,8 @@ class AnswerController extends Controller
         {
            
             $answer = Answer::find($id);
-            return view('answer.answer')->withAnswer($answer);
+            $questions = Question::all();
+            return view('answer.answer')->with(['answer' => $answer,'questions' => $questions]);
 
         }
 
@@ -48,6 +49,7 @@ class AnswerController extends Controller
         
             'answer' => 'required',
             'image_name' => 'required',
+            'question_name' => 'required'
         
             
         ]);
@@ -67,7 +69,7 @@ class AnswerController extends Controller
         $answer->answer = $request->get('answer');
         $answer->is_active = $request->get('is_active');
         $answer->is_correct = $request->get('is_correct');
-        $answer->question_id = $request->get('question_id');
+        $answer->question_id = $request->get('question_name');
         
         
         
@@ -79,7 +81,7 @@ class AnswerController extends Controller
         
        
 
-        return redirect('/answers')->with('success', 'Answer Created!');
+        return redirect('/answers/index')->with('success', 'Answer Created!');
     }
 
   /**
@@ -95,6 +97,7 @@ class AnswerController extends Controller
         
             'answer' => 'required',
             'image_name' => 'required',
+            'question_name' => 'required'
         
             
         ]);
@@ -114,7 +117,7 @@ class AnswerController extends Controller
         $answer->answer = $request->get('answer');
         $answer->is_active = $request->get('is_active');
         $answer->is_correct = $request->get('is_correct');
-        $answer->question_id = $request->get('question_id');
+        $answer->question_id = $request->get('question_name');
         
         
         
@@ -126,7 +129,7 @@ class AnswerController extends Controller
         
        
 
-        return redirect('/answers')->with('success', 'Answer Updated!');
+        return redirect('/answers/index')->with('success', 'Answer Updated!');
     }
 
 

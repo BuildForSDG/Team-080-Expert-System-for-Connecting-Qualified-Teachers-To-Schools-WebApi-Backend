@@ -61,7 +61,7 @@ class LevelController extends Controller
         
        
 
-        return redirect('/levels')->with('success', 'Level Created!');
+        return redirect('/levels/index')->with('success', 'Level Created!');
     }
 
   /**
@@ -94,7 +94,7 @@ class LevelController extends Controller
         
        
 
-        return redirect('/levels')->with('success', 'Level Updated!');
+        return redirect('/levels/index')->with('success', 'Level Updated!');
     }
 
 

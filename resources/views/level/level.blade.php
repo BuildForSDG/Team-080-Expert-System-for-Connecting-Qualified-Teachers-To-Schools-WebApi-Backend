@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Update Questions </h1>
+        <h1 class="display-3">Update Levels </h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -16,12 +16,12 @@
         </div>
         <br /> 
         @endif
-        <form method="post" action="{{ route('questions.update') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('levels.update') }}" enctype="multipart/form-data">
         
             @csrf
             <div class="form-group">
 
-                <label for="name">Question:</label>
+                <label for="name">Level:</label>
                 <input type="text" class="form-control" name="name" value={{ $level->name }}/>
             </div>
            

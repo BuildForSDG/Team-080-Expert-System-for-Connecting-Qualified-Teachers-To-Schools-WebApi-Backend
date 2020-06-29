@@ -60,7 +60,7 @@
 <label for="home_content" class="col-md-2 col-form-label">Home Content</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="question_name" id="question_name" required>
 <option selected>Select A Question</option>
 @foreach($questions as $question)
 <option value="{{$question->id}}">{{$question->question}}</option>

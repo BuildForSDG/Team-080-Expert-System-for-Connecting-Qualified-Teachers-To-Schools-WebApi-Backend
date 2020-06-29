@@ -4,7 +4,7 @@
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Questions</h2>
+                <h2> Levels</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('levels.create') }}"> Create New Questions</a>
@@ -38,23 +38,20 @@
     <tbody>
         @foreach($levels as $level)
         <tr>
-            <td>{{$levels->name}}</td>
-            <td>{{$levels->level_group}</td>
+            <td>{{$level->name}}</td>
+            <td>{{$level->level_group}}</td>
             
             
             <td>
-            <form action="{{ route('levels.destroy',$level->id) }}" method="POST">
+            
    
-   <a class="btn btn-info" href="{{ route('levels.show',$level->id) }}">Edit</a>
-
-   
-
-   @csrf
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="{{ route('levels.show',$level->id) }}">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/{{ $level->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

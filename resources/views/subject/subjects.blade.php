@@ -40,18 +40,15 @@
             <td>{{$subject->name}}</td>
             
             <td>
-            <form action="{{ route('subjects.destroy',$subject->id) }}" method="POST">
+            
    
-   <a class="btn btn-info" href="{{ route('subjects.show',$subject->id) }}">Edit</a>
-
-   
-
-   @csrf
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="{{ route('subjects.show',$subject->id) }}">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'index/delete/{{ $subject->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

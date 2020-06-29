@@ -43,18 +43,15 @@
             <td>{{$answer->is_correct}}</td>
             
             <td>
-            <form action="{{ route('answers.destroy',$answer->id) }}" method="POST">
+            
    
-   <a class="btn btn-info" href="{{ route('answers.show',$answer->id) }}">Edit</a>
-
-   
-
-   @csrf
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="{{ route('answers.show',$answer->id) }}">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/{{ $answer->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

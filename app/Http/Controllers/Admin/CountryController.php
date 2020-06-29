@@ -61,14 +61,10 @@ class CountryController extends Controller
 
 
 
-        return redirect('/countries')->with('success', 'Country Created!');
+        return redirect('/countries/index')->with('success', 'Country Created!');
     }
 
-    public function edit($id)
-    {
-        return Country::find($id);
-    }
-
+   
   /**
      * Update the specified resource in storage.
      *
@@ -87,7 +83,7 @@ class CountryController extends Controller
             ]);
 
 
-        $country = Country::find($id);
+        $country = Country::find($request->input('id'));
 
 
 
@@ -99,7 +95,7 @@ class CountryController extends Controller
 
 
 
-        return redirect('/countries')->with('success', 'Country Updated!');
+        return redirect('/countries/index')->with('success', 'Country Updated!');
     }
 
 
@@ -113,8 +109,8 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
+        return redirect('/countries')->with('success', 'Country deleted successfully!');
 
-        return redirect()->route('country.countries')
-        ->with('success','Country deleted successfully');
+        
     }
 }

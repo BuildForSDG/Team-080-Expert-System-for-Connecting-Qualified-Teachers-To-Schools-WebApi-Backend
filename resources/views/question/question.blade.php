@@ -21,13 +21,13 @@
             @csrf
             <div class="form-group">
 
-<label for="name">Question:</label>
-<input type="text" class="form-control" name="name" value={{ $question->name }}/>
+<label for="question">Question:</label>
+<input type="text" class="form-control" name="question" value={{ $question->question }}/>
 </div>
 
 <div class="form-group">
 <label for="is_active">Is Active?:</label>
-<input type="checkbox" class="form-control" name="is_active" value={{ $question->name }} />
+<input type="checkbox" class="form-control" name="is_active" value={{ $question->is_active }} />
 </div>
 
 <div class="form-group">
@@ -60,7 +60,7 @@
 <label for="home_content" class="col-md-2 col-form-label">Subject</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="subject_name" id="subject_name" required>
 <option selected>Select A Subject</option>
 @foreach($subjects as $subject)
 <option value="{{$subject->id}}">{{$subject->name}}</option>

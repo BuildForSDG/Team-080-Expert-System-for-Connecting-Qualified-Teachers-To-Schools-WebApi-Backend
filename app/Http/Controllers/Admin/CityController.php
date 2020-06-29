@@ -10,7 +10,7 @@ class CityController extends Controller
 {
     public function index(Request $request){
         
-        $cities = City::with(['state','quize'])->paginate(5);
+        $cities = City::with(['state'])->paginate(5);
 
         return view('city.cities')->withCities($cities);
     }
@@ -20,7 +20,8 @@ class CityController extends Controller
     {
 
         $city = city::find($id);
-        return view('city.city')->withCity($city);
+        $states = State::all();
+        return view('city.city')->with(['city' => $city,'states' => $states]);
 
     }
 
@@ -49,7 +50,8 @@ class CityController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'state_name' => 'required'
 
         ]);
 
@@ -59,7 +61,7 @@ class CityController extends Controller
 
 
         $city->name = $request->get('name');
-        $city->state_id = $request->get('state_id');
+        $city->state_id = $request->get('state_name');
 
 
 
@@ -67,7 +69,7 @@ class CityController extends Controller
         $city->save();
 
 
-        return redirect('/cities')->with('success', 'City Created!');
+        return redirect('/cities/index')->with('success', 'City Created!');
     }
 
   /**
@@ -81,7 +83,8 @@ class CityController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'state_name' => 'required'
 
         ]);
 
@@ -91,7 +94,7 @@ class CityController extends Controller
 
 
         $city->name = $request->get('name');
-        $city->state_id = $request->get('state_id');
+        $city->state_id = $request->get('state_name');
 
 
 
@@ -100,7 +103,7 @@ class CityController extends Controller
 
 
 
-        return redirect('/cities')->with('success', 'City Updated!');
+        return redirect('/cities/index')->with('success', 'City Updated!');
     }
 
 

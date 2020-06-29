@@ -35,7 +35,7 @@
 <label for="home_content" class="col-md-2 col-form-label">State</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="state_name" id="state_name" required>
 <option selected>Select A State</option>
 @foreach($states as $state)
 <option value="{{$state->id}}">{{$state->name}}</option>

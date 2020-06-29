@@ -38,23 +38,20 @@
     <tbody>
         <?php $__currentLoopData = $questions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td><?php echo e($questions->name); ?></td>
-            <td><?php echo e($questions->is_active); ?></td>
-            <td><?php echo e($questions->is_german); ?></td>
+            <td><?php echo e($question->question); ?></td>
+            <td><?php echo e($question->is_active); ?></td>
+            <td><?php echo e($question->is_german); ?></td>
             
             <td>
-            <form action="<?php echo e(route('questions.destroy',$question->id)); ?>" method="POST">
+            
    
-   <a class="btn btn-info" href="<?php echo e(route('questions.show',$question->id)); ?>">Edit</a>
-
-   
-
-   <?php echo csrf_field(); ?>
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="<?php echo e(route('questions.show',$question->id)); ?>">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/<?php echo e($question->id); ?>'>Delete</a></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

@@ -16,7 +16,7 @@
         </div>
         <br /> 
         @endif
-        <form method="post" action="{{ route('cities.update') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('countries.update') }}" enctype="multipart/form-data">
         
             @csrf
             <div class="form-group">

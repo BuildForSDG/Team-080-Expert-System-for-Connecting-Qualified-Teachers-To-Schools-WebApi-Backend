@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Resources\SubjectResource;
 use App\Subject;
+use App\Level;
+use DB;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -16,7 +18,8 @@ class SubjectController extends Controller
         {
            
             $subject = Subject::find($id);
-            return view('subject.subject')->withSubject($subject);
+            $levels = Level::all();
+            return view('subject.subject')->with(['subject' => $subject,'levels' => $levels]);
         }
 
          /**
@@ -26,7 +29,12 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('subject.create');
+        $levels = Level::all();
+        return view('subject.create')->with([
+            'levels'  => $levels
+            
+   
+           ]);
     }
 
          /**
@@ -39,7 +47,8 @@ class SubjectController extends Controller
     {
         $request->validate([
         
-            'name' => 'required'
+            'name' => 'required',
+            'level_name' => 'required'
             
         ]);
         
@@ -49,7 +58,7 @@ class SubjectController extends Controller
         
 
         $subject->name = $request->get('name');
-        $subject->level_id = $request->get('level_id');
+        $subject->level_id = $request->get('level_name');
         
         
         
@@ -60,7 +69,7 @@ class SubjectController extends Controller
         
        
 
-        return redirect('/subjects')->with('success', 'Subject Created!');
+        return redirect('/subjects/index')->with('success', 'Subject Created!');
     }
 
   /**
@@ -74,7 +83,8 @@ class SubjectController extends Controller
     {
         $request->validate([
         
-            'name' => 'required'
+            'name' => 'required',
+            'level_name' => 'required'
             
         ]);
   
@@ -84,7 +94,7 @@ class SubjectController extends Controller
 
        
         $subject->name = $request->get('name');
-        $subject->level_id = $request->get('level_id');
+        $subject->level_id = $request->get('level_name');
         
         
         
@@ -95,7 +105,7 @@ class SubjectController extends Controller
         
        
 
-        return redirect('/subjects')->with('success', 'Subject Updated!');
+        return redirect('/subjects/index')->with('success', 'Subject Updated!');
     }
 
 
@@ -108,9 +118,9 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        $subject->delete();
+        
   
-        return redirect()->route('subject.subjects')
-        ->with('success','Subject deleted successfully');
+        DB::delete('delete from subjects where id = ?',[$id]);
+        return redirect('/subjects')->with('success', 'Subject  deleted!');
     }
 }

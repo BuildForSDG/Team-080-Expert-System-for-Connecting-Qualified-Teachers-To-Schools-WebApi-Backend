@@ -17,7 +17,8 @@ class QuestionController extends Controller
         {
            
             $question = Question::find($id);
-            return view('question.question')->withQuestion($question);
+            $subjects = Subject::all();
+            return view('question.question')->with(['question' => $question, 'subjects' => $subjects]);
         }
 
         /**
@@ -47,6 +48,7 @@ class QuestionController extends Controller
         
             'question' => 'required',
             'image_name' => 'required',
+            'subject_name' => 'required'
         
             
         ]);
@@ -63,10 +65,10 @@ class QuestionController extends Controller
          }
 
 
-        $question->name = $request->get('name');
+        $question->question = $request->get('question');
         $question->is_active = $request->get('is_active');
         $question->is_german = $request->get('is_german');
-        $question->subject_id = $request->get('subject_id');
+        $question->subject_id = $request->get('subject_name');
         
         
         
@@ -78,7 +80,7 @@ class QuestionController extends Controller
         
        
 
-        return redirect('/questions')->with('success', 'Question Created!');
+        return redirect('/questions/index')->with('success', 'Question Created!');
     }
 
   /**
@@ -94,6 +96,7 @@ class QuestionController extends Controller
         
             'question' => 'required',
             'image_name' => 'required',
+            'subject_name' => 'required'
         
             
         ]);
@@ -110,9 +113,10 @@ class QuestionController extends Controller
          }
 
 
-        $question->name = $request->get('name');
+        $question->question = $request->get('question');
         $question->is_active = $request->get('is_active');
         $question->is_german = $request->get('is_german');
+        $question->subject_id = $request->get('subject_name');
         
         
         
@@ -123,7 +127,7 @@ class QuestionController extends Controller
         
        
 
-        return redirect('/questions')->with('success', 'Question Updated!');
+        return redirect('/questions/index')->with('success', 'Question Updated!');
     }
 
 

@@ -4,7 +4,7 @@
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Questions</h2>
+                <h2> Levels</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="<?php echo e(route('levels.create')); ?>"> Create New Questions</a>
@@ -38,23 +38,20 @@
     <tbody>
         <?php $__currentLoopData = $levels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $level): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td><?php echo e($levels->name); ?></td>
-            <td><?php echo e($levels->level_group}</td>
+            <td><?php echo e($level->name); ?></td>
+            <td><?php echo e($level->level_group); ?></td>
             
             
             <td>
-            <form action="{{ route('levels.destroy',$level->id)); ?>" method="POST">
+            
    
-   <a class="btn btn-info" href="<?php echo e(route('levels.show',$level->id)); ?>">Edit</a>
-
-   
-
-   <?php echo csrf_field(); ?>
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="<?php echo e(route('levels.show',$level->id)); ?>">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/<?php echo e($level->id); ?>'>Delete</a></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

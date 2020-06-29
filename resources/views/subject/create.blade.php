@@ -35,7 +35,7 @@
 <label for="home_content" class="col-md-2 col-form-label">Level</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="level_name" id="level_name" required>
 <option selected>Select A Level</option>
 @foreach($levels as $level)
 <option value="{{$level->id}}">{{$level->name}}</option>

@@ -21,7 +21,7 @@
             @csrf
             <div class="form-group">
 
-                <label for="name">Question:</label>
+                <label for="name">Level:</label>
                 <input type="text" class="form-control" name="name"/>
             </div>
            

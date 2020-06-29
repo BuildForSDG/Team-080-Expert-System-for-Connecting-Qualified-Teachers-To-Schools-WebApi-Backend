@@ -21,10 +21,10 @@ class StateController extends Controller
 
     public function show($id)
     {
-
+        $countries = Country::all();
     $state = State::find($id);
 
-    return view('state.state')->withState($state);
+    return view('state.state')->with(['state'=>$state,'countries'=> $countries]);
     }
 
     /**
@@ -52,7 +52,8 @@ class StateController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'country_name' => 'required'
 
         ]);
 
@@ -62,7 +63,7 @@ class StateController extends Controller
 
 
         $state->name = $request->get('name');
-        $state->country_id = $request->get('country_id');
+        $state->country_id = $request->get('country_name');
 
 
 
@@ -71,7 +72,7 @@ class StateController extends Controller
 
         $state->save();
 
-        return redirect('/states')->with('success', 'State Created!');
+        return redirect('/states/index')->with('success', 'State Created!');
     }
 
     public function edit($id)
@@ -90,7 +91,8 @@ class StateController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'country_name' => 'required'
 
         ]);
 
@@ -100,7 +102,7 @@ class StateController extends Controller
 
 
         $state->name = $request->get('name');
-        $state->country_id = $request->get('country_id');
+        $state->country_id = $request->get('country_name');
 
 
 
@@ -111,7 +113,7 @@ class StateController extends Controller
 
 
 
-        return redirect('/states')->with('success', 'State Updated!');
+        return redirect('/states/index')->with('success', 'State Updated!');
     }
 
 

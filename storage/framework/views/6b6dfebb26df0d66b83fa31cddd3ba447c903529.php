@@ -43,18 +43,15 @@
             <td><?php echo e($answer->is_correct); ?></td>
             
             <td>
-            <form action="<?php echo e(route('answers.destroy',$answer->id)); ?>" method="POST">
+            
    
-   <a class="btn btn-info" href="<?php echo e(route('answers.show',$answer->id)); ?>">Edit</a>
-
-   
-
-   <?php echo csrf_field(); ?>
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="<?php echo e(route('answers.show',$answer->id)); ?>">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/<?php echo e($answer->id); ?>'>Delete</a></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

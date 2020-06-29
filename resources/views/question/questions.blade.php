@@ -38,23 +38,20 @@
     <tbody>
         @foreach($questions as $question)
         <tr>
-            <td>{{$questions->name}}</td>
-            <td>{{$questions->is_active}}</td>
-            <td>{{$questions->is_german}}</td>
+            <td>{{$question->question}}</td>
+            <td>{{$question->is_active}}</td>
+            <td>{{$question->is_german}}</td>
             
             <td>
-            <form action="{{ route('questions.destroy',$question->id) }}" method="POST">
+            
    
-   <a class="btn btn-info" href="{{ route('questions.show',$question->id) }}">Edit</a>
-
-   
-
-   @csrf
-   
-
-   <button type="submit" class="btn btn-danger">Delete</button>
-</form>
-            </td>
+            <a class="btn btn-info" href="{{ route('questions.show',$question->id) }}">Edit</a>
+         
+            
+         
+            
+                     </td>
+                     <td><a class="btn btn-danger" href = 'delete/{{ $question->id }}'>Delete</a></td>
         </tr>
         @endforeach
     </tbody>

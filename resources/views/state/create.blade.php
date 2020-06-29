@@ -35,10 +35,10 @@
 <label for="home_content" class="col-md-2 col-form-label">Country</label>
 <div class="col-md-10">
 
-<select class="form-control" name="home_content" id="home_content" required>
+<select class="form-control" name="country_name" id="country_name" required>
 <option selected>Select A Country</option>
 @foreach($countries as $country)
-<option value="{{$country->id}}">{{$country->name}}</option>
+<option value="{{$country->id}}">{{$country->long_name}}</option>
 @endforeach
 </select>
 </div>
