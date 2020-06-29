@@ -8,14 +8,27 @@ use App\Level;
 class LevelController extends Controller
 {
     public function index(){
-        return LevelResource::collection(Level::paginate(5));
+        $levels = Level::paginate(5);
+
+        return view('level.levels')->withLevels($levels);
     }
 
     public function show($id)
         {
            
-            return new LevelResource(Level::find($id));
+            $level = Level::find($id);
+            return view('level.level')->withLevel($level);
         }
+
+         /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('level.create');
+    }
 
          /**
      * Store a newly created resource in storage.
@@ -48,8 +61,7 @@ class LevelController extends Controller
         
        
 
-        return response()->json(['message'=> 'level created', 
-        'level' => $level]);
+        return redirect('/levels/index')->with('success', 'Level Created!');
     }
 
   /**
@@ -82,8 +94,7 @@ class LevelController extends Controller
         
        
 
-        return response()->json(['message'=> 'level created', 
-        'level' => $level]);
+        return redirect('/levels/index')->with('success', 'Level Updated!');
     }
 
 
@@ -98,8 +109,7 @@ class LevelController extends Controller
     {
         $level->delete();
   
-        return response()->json([
-            'message' => 'level deleted'
-        ]);
+        return redirect()->route('level.levels')
+        ->with('success','Level deleted successfully');
     }
 }

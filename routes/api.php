@@ -47,21 +47,21 @@ use Illuminate\Support\Facades\Route;
     Route::delete('profiles/{id}', 'ProfileController@destory');
 
  //Answer Routes
- Route::get('answers', 'AnswerController@index');
+ Route::get('answers', 'Api\AnswerApiController@index');
  Route::get('answers/{id}', 'AnswerController@show');
  Route::post('answers/create', 'AnswerController@store');
  Route::post('answers', 'AnswerController@update');
  Route::delete('answers/{id}', 'AnswerController@destory');
 
      //City Routes
-     Route::get('cities', 'CityController@index');
+     Route::get('cities', 'Api\CityApiController@index');
      Route::get('cities/{id}', 'CityController@show');
      Route::post('cities/create', 'CityController@store');
      Route::post('cities', 'CityController@update');
      Route::delete('cities/{id}', 'CityController@destory');
 
      //Country Routes
-     Route::get('countries', 'CountryController@index');
+     Route::get('countries', 'Api\CountryApiController@index');
      Route::get('countries/{id}', 'CountryController@show');
      Route::post('countries/create', 'CountryController@store');
      Route::post('countries', 'CountryController@update');
@@ -89,7 +89,7 @@ use Illuminate\Support\Facades\Route;
         Route::delete('institutiontypes/{id}', 'InstitutionTypeController@destory');
 
         //Level Routes
-        Route::get('levels', 'LevelController@index');
+        Route::get('levels', 'Api\LevelApiController@index');
         Route::get('levels/{id}', 'LevelController@show');
         Route::post('levels/create', 'LevelController@store');
         Route::post('levels', 'LevelController@update');
@@ -103,7 +103,7 @@ use Illuminate\Support\Facades\Route;
           Route::delete('qualifications/{id}', 'QualificationController@destory');
 
            //Question Routes
-           Route::get('questions', 'QuestionController@index');
+           Route::get('questions', 'Api\QuestionApiController@index');
            Route::get('questions/{id}', 'QuestionController@show');
            Route::post('questions/create', 'QuestionController@store');
            Route::post('questions', 'QuestionController@update');
@@ -117,14 +117,14 @@ use Illuminate\Support\Facades\Route;
             Route::delete('quizes/{id}', 'QuizeController@destory');
 
              //State Routes
-             Route::get('states', 'StateController@index');
+             Route::get('states', 'Api\StateApiController@index');
              Route::get('states/{id}', 'StateController@show');
              Route::post('states/create', 'StateController@store');
              Route::post('states', 'StateController@update');
              Route::delete('states/{id}', 'StateController@destory');
 
               //Subject Routes
-              Route::get('subjects', 'SubjectController@index');
+              Route::get('subjects', 'Api\SubjectApiController@index');
               Route::get('subjects/{id}', 'SubjectController@show');
               Route::post('subjects/create', 'SubjectController@store');
               Route::post('subjects', 'SubjectController@update');

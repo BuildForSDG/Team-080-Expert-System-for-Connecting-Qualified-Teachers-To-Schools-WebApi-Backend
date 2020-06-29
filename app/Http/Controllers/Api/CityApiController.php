@@ -1,45 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\CityResource;
+use App\Http\Controllers\Controller;
 use App\City;
-use App\State;
-class CityController extends Controller
+class CityApiController extends Controller
 {
     public function index(Request $request){
         
-        $cities = City::with(['state'])->paginate(5);
-
-        return view('city.cities')->withCities($cities);
+        return CityResource::collection(City::with(['state'])->paginate(5));
+        
     }
 
     
     public function show($id)
     {
 
-        $city = city::find($id);
-        $states = State::all();
-        return view('city.city')->with(['city' => $city,'states' => $states]);
-
+        return new CityResource(city::find($id));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $states = State::all();
-        return view('city.create')->with([
-            'states'  => $states
-            
-   
-           ]);
-    }
-  
          /**
      * Store a newly created resource in storage.
      *
@@ -50,8 +31,7 @@ class CityController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
-            'state_name' => 'required'
+            'name' => 'required'
 
         ]);
 
@@ -61,7 +41,7 @@ class CityController extends Controller
 
 
         $city->name = $request->get('name');
-        $city->state_id = $request->get('state_name');
+        $city->state_id = $request->get('state_id');
 
 
 
@@ -69,7 +49,7 @@ class CityController extends Controller
         $city->save();
 
 
-        return redirect('/cities/index')->with('success', 'City Created!');
+        return response()->json(['message'=> 'city created']);
     }
 
   /**
@@ -83,8 +63,7 @@ class CityController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
-            'state_name' => 'required'
+            'name' => 'required'
 
         ]);
 
@@ -94,7 +73,7 @@ class CityController extends Controller
 
 
         $city->name = $request->get('name');
-        $city->state_id = $request->get('state_name');
+        $city->state_id = $request->get('state_id');
 
 
 
@@ -103,7 +82,8 @@ class CityController extends Controller
 
 
 
-        return redirect('/cities/index')->with('success', 'City Updated!');
+        return response()->json(['message'=> 'city updated',
+        'city' => $city]);
     }
 
 
@@ -111,14 +91,15 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\City  $city
+     * @param  \App\City  $profile
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)
     {
         $city->delete();
 
-        return redirect()->route('city.cities')
-        ->with('success','City deleted successfully');
+        return response()->json([
+            'message' => 'city deleted'
+        ]);
     }
 }

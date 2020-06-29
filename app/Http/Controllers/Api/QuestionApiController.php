@@ -1,40 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Resources\QuestionResource;
 use App\Question;
-use App\Subject;
 use Illuminate\Http\Request;
-
-class QuestionController extends Controller
+use App\Http\Controllers\Controller;
+class QuestionApiController extends Controller
 {
     public function index(){
-        $questions = Question::with(['subject'])->paginate(5);
-        return view('question.questions')->withQuestions($questions);
+        return QuestionResource::collection(Question::with(['subject'])->paginate(5));
     }
 
     public function show($id)
         {
            
-            $question = Question::find($id);
-            $subjects = Subject::all();
-            return view('question.question')->with(['question' => $question, 'subjects' => $subjects]);
+            return new QuestionResource(Question::find($id));
         }
-
-        /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {   $subjects = Subject::all();
-        return view('question.create')->with([
-            'subjects'  => $subjects
-            
-   
-           ]);
-    }
-  
 
          /**
      * Store a newly created resource in storage.
@@ -48,7 +29,6 @@ class QuestionController extends Controller
         
             'question' => 'required',
             'image_name' => 'required',
-            'subject_name' => 'required'
         
             
         ]);
@@ -65,10 +45,10 @@ class QuestionController extends Controller
          }
 
 
-        $question->question = $request->get('question');
+        $question->name = $request->get('name');
         $question->is_active = $request->get('is_active');
         $question->is_german = $request->get('is_german');
-        $question->subject_id = $request->get('subject_name');
+        $question->subject_id = $request->get('subject_id');
         
         
         
@@ -80,7 +60,8 @@ class QuestionController extends Controller
         
        
 
-        return redirect('/questions/index')->with('success', 'Question Created!');
+        return response()->json(['message'=> 'question created', 
+        'question' => $question]);
     }
 
   /**
@@ -96,7 +77,6 @@ class QuestionController extends Controller
         
             'question' => 'required',
             'image_name' => 'required',
-            'subject_name' => 'required'
         
             
         ]);
@@ -113,10 +93,9 @@ class QuestionController extends Controller
          }
 
 
-        $question->question = $request->get('question');
+        $question->name = $request->get('name');
         $question->is_active = $request->get('is_active');
         $question->is_german = $request->get('is_german');
-        $question->subject_id = $request->get('subject_name');
         
         
         
@@ -127,7 +106,8 @@ class QuestionController extends Controller
         
        
 
-        return redirect('/questions/index')->with('success', 'Question Updated!');
+        return response()->json(['message'=> 'question updated', 
+        'question' => $question]);
     }
 
 
@@ -142,8 +122,8 @@ class QuestionController extends Controller
     {
         $question->delete();
   
-        return redirect()->route('question.questions')
-        ->with('success','Question deleted successfully');
-    
+        return response()->json([
+            'message' => 'question deleted'
+        ]);
     }
 }

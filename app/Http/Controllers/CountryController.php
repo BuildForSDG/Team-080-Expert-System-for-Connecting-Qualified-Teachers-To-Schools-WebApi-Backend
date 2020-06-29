@@ -8,15 +8,27 @@ use Illuminate\Http\Request;
 class CountryController extends Controller
 {
     public function index(){
-        return CountryResource::collection(Country::paginate(5));
+        $countries = Country::paginate(5);
+        return view('country.countries')->withCountries($countries);
         
     }
 
     
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('country.create');
+    }
+  
     public function show($id)
         {
 
-            return new CountryResource(Country::find($id));
+            $country = Country::find($id);
+            return view('country.country')->withCountry($country);
         }
 
          /**
@@ -49,15 +61,10 @@ class CountryController extends Controller
 
 
 
-        return response()->json(['message'=> 'country created',
-        'country' => $country]);
+        return redirect('/countries/index')->with('success', 'Country Created!');
     }
 
-    public function edit($id)
-    {
-        return Country::find($id);
-    }
-
+   
   /**
      * Update the specified resource in storage.
      *
@@ -76,7 +83,7 @@ class CountryController extends Controller
             ]);
 
 
-        $country = Country::find($id);
+        $country = Country::find($request->input('id'));
 
 
 
@@ -88,8 +95,7 @@ class CountryController extends Controller
 
 
 
-        return response()->json(['message'=> 'country updated',
-        'country' => $country]);
+        return redirect('/countries/index')->with('success', 'Country Updated!');
     }
 
 
@@ -103,9 +109,8 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
+        return redirect('/countries')->with('success', 'Country deleted successfully!');
 
-        return response()->json([
-            'message' => 'country deleted'
-        ]);
+        
     }
 }

@@ -1,34 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Resources\CountryResource;
 use App\Country;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class CountryApiController extends Controller
 {
     public function index(){
-        $countries = Country::paginate(5);
-        return view('country.countries')->withCountries($countries);
+        return CountryResource::collection(Country::paginate(5));
         
     }
 
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('country.create');
-    }
-  
     public function show($id)
         {
 
-            $country = Country::find($id);
-            return view('country.country')->withCountry($country);
+            return new CountryResource(Country::find($id));
         }
 
          /**
@@ -61,10 +50,15 @@ class CountryController extends Controller
 
 
 
-        return redirect('/countries/index')->with('success', 'Country Created!');
+        return response()->json(['message'=> 'country created',
+        'country' => $country]);
     }
 
-   
+    public function edit($id)
+    {
+        return Country::find($id);
+    }
+
   /**
      * Update the specified resource in storage.
      *
@@ -83,7 +77,7 @@ class CountryController extends Controller
             ]);
 
 
-        $country = Country::find($request->input('id'));
+        $country = Country::find($id);
 
 
 
@@ -95,7 +89,8 @@ class CountryController extends Controller
 
 
 
-        return redirect('/countries/index')->with('success', 'Country Updated!');
+        return response()->json(['message'=> 'country updated',
+        'country' => $country]);
     }
 
 
@@ -109,8 +104,9 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
-        return redirect('/countries')->with('success', 'Country deleted successfully!');
 
-        
+        return response()->json([
+            'message' => 'country deleted'
+        ]);
     }
 }

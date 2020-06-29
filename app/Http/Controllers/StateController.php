@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Resources\StateResource;
 use App\State;
+use App\Country;
 use Illuminate\Http\Request;
 
 class StateController extends Controller
@@ -10,7 +11,9 @@ class StateController extends Controller
     public function index(Request $request){
         
 
-        return StateResource::collection(State::with(['country'])->paginate(5));
+        $states = State::with(['country'])->paginate(5);
+
+        return view('state.states')->withStates($states);
        
     }
 
@@ -18,8 +21,25 @@ class StateController extends Controller
 
     public function show($id)
     {
+        $countries = Country::all();
+    $state = State::find($id);
 
-        return new StateResource(State::find($id));
+    return view('state.state')->with(['state'=>$state,'countries'=> $countries]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $countries = Country::all();
+        return view('state.create')->with([
+            'countries'  => $countries
+            
+   
+           ]);
     }
 
          /**
@@ -32,7 +52,8 @@ class StateController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'country_name' => 'required'
 
         ]);
 
@@ -42,7 +63,7 @@ class StateController extends Controller
 
 
         $state->name = $request->get('name');
-        $state->country_id = $request->get('country_id');
+        $state->country_id = $request->get('country_name');
 
 
 
@@ -51,7 +72,7 @@ class StateController extends Controller
 
         $state->save();
 
-        return response()->json(['message'=> 'state created']);
+        return redirect('/states/index')->with('success', 'State Created!');
     }
 
     public function edit($id)
@@ -70,7 +91,8 @@ class StateController extends Controller
     {
         $request->validate([
 
-            'name' => 'required'
+            'name' => 'required',
+            'country_name' => 'required'
 
         ]);
 
@@ -80,7 +102,7 @@ class StateController extends Controller
 
 
         $state->name = $request->get('name');
-        $state->country_id = $request->get('country_id');
+        $state->country_id = $request->get('country_name');
 
 
 
@@ -91,8 +113,7 @@ class StateController extends Controller
 
 
 
-        return response()->json(['message'=> 'state updated',
-        'state' => $state]);
+        return redirect('/states/index')->with('success', 'State Updated!');
     }
 
 
@@ -107,8 +128,7 @@ class StateController extends Controller
     {
         $state->delete();
 
-        return response()->json([
-            'message' => 'state deleted'
-        ]);
+        return redirect()->route('state.states')
+        ->with('success','State deleted successfully');
     }
 }

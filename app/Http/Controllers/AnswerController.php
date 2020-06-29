@@ -4,17 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Answer;
+use App\Question;
 class AnswerController extends Controller
 {
     public function index(){
-        return AnswerResource::collection(Answer::with(['question'])->paginate(5));
+        $answers = Answer::with(['question'])->paginate(5);
+        return view('answer.answers')->withAnswers($answers);
     }
 
     public function show($id)
         {
            
-            return new AnswerResource(Answer::find($id));
+            $answer = Answer::find($id);
+            $questions = Question::all();
+            return view('answer.answer')->with(['answer' => $answer,'questions' => $questions]);
+
         }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $questions = Question::all();
+        return view('answer.create')->with([
+            'questions'  => $questions
+            
+   
+           ]);
+    }
+  
 
          /**
      * Store a newly created resource in storage.
@@ -28,6 +49,7 @@ class AnswerController extends Controller
         
             'answer' => 'required',
             'image_name' => 'required',
+            'question_name' => 'required'
         
             
         ]);
@@ -47,7 +69,7 @@ class AnswerController extends Controller
         $answer->answer = $request->get('answer');
         $answer->is_active = $request->get('is_active');
         $answer->is_correct = $request->get('is_correct');
-        $answer->question_id = $request->get('question_id');
+        $answer->question_id = $request->get('question_name');
         
         
         
@@ -59,8 +81,7 @@ class AnswerController extends Controller
         
        
 
-        return response()->json(['message'=> 'answer created', 
-        'answer' => $answer]);
+        return redirect('/answers/index')->with('success', 'Answer Created!');
     }
 
   /**
@@ -76,6 +97,7 @@ class AnswerController extends Controller
         
             'answer' => 'required',
             'image_name' => 'required',
+            'question_name' => 'required'
         
             
         ]);
@@ -95,7 +117,7 @@ class AnswerController extends Controller
         $answer->answer = $request->get('answer');
         $answer->is_active = $request->get('is_active');
         $answer->is_correct = $request->get('is_correct');
-        $answer->question_id = $request->get('question_id');
+        $answer->question_id = $request->get('question_name');
         
         
         
@@ -107,8 +129,7 @@ class AnswerController extends Controller
         
        
 
-        return response()->json(['message'=> 'answer updated', 
-        'answer' => $answer]);
+        return redirect('/answers/index')->with('success', 'Answer Updated!');
     }
 
 
@@ -123,8 +144,8 @@ class AnswerController extends Controller
     {
         $answer->delete();
   
-        return response()->json([
-            'message' => 'answer deleted'
-        ]);
+        return redirect()->route('answer.answers')
+        ->with('success','Answer deleted successfully');
+
     }
 }
